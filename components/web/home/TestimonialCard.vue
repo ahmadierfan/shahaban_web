@@ -13,7 +13,7 @@
                 <img src="/images/avatar.webp" alt="تصویر مشتری" class="w-12 h-12 rounded-full object-cover" />
                 <div class="text-center md:text-right">
                     <p class="font-semibold text-gray-800">یوسف دایومکین</p>
-                    <p class="text-sm text-gray-500">مدیر شرکت گاراژ نینجا</p>
+                    <p class="text-sm text-gray-500">مدیر شرکت آسانسور نینجا</p>
                 </div>
             </div>
         </div>

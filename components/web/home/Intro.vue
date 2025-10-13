@@ -1,52 +1,119 @@
 <template>
-    <main class="pt-18 overflow-hidden" dir="rtl">
-        <!-- عناصر شناور در پس‌زمینه -->
-        <div class="floating-elements" ref="floatingContainer">
-            <div class="floating-element element-1" data-depth="0.1"></div>
-            <div class="floating-element element-2" data-depth="0.2"></div>
-            <div class="floating-element element-3" data-depth="0.15"></div>
-            <div class="floating-element element-4" data-depth="0.25"></div>
-            <div class="floating-element element-5" data-depth="0.12"></div>
-            <div class="floating-element element-6" data-depth="0.18"></div>
-        </div>
+    <main class="pt-16 overflow-hidden" dir="rtl">
+        <!-- هدر -->
+        <HeaderComponent />
 
-        <section class="bg-gradient-to-b from-blue-900 via-blue-400 to-white text-white relative">
-            <div class="container mx-auto px-6 py-24 grid md:grid-cols-2 gap-10 items-center relative z-10">
-                <div class="text-center md:text-right space-y-6">
-                    <h1 class="text-4xl py-20 md:text-5xl font-extrabold leading-snug">
-                        اولین نرم افزار مدیریت خدمات میدانی ابری
-                    </h1>
-                    <p class="text-lg text-blue-800">
-                        کل فرآیند ثبت درخواست تا نمودار های مدیریتی
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-0 items-stretch justify-center md:justify-start">
-                        <label for="phone" class="sr-only">شماره موبایل</label>
-                        <div class="relative w-full sm:w-auto">
-                            <input id="phone" v-model="phone" type="tel" inputmode="tel" placeholder="09..."
-                                class="w-64 sm:w-64 h-12 py-3 px-4 text-black font-medium focus:outline-none bg-white border-none rounded-r-full rounded-l-none transition-all duration-300 transform hover:scale-105"
-                                :class="{ 'ring-2 ring-yellow-500': phoneValid, 'ring-2 ring-red-400': phone && !phoneValid }"
-                                aria-invalid="false" aria-describedby="phone-hint" pattern="^09\d{9}$" />
-                            <div id="phone-hint" class="hidden">شماره موبایل را به‌صورت 09xxxxxxxxx وارد کنید</div>
-                        </div>
-                        <button type="submit"
-                            class="inline-block bg-yellow-400 cursor-pointer hover:bg-yellow-500 text-black h-12 px-6 rounded-l-full rounded-r-none whitespace-nowrap transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
-                            همین الان رایگان امتحان کن
-                        </button>
-                    </div>
-                    <p class="text-4xl text-blue-800 pt-10">
-                        سه روز تست رایگان
-                    </p>
-                    <p v-if="submitted && phoneValid" class="text-sm text-blue-100 mt-2">
-                        متشکریم! شماره شما دریافت شد: <span class="font-bold text-white">{{ phone }}</span>
-                    </p>
-                    <p v-if="submitted && !phoneValid" class="text-sm text-red-200 mt-2">
-                        لطفاً یک شماره موبایل معتبر وارد کنید (مثال: 0912xxxxxxxx).
-                    </p>
-                </div>
-
+        <!-- بخش اصلی اینترو -->
+        <section class="relative bg-gradient-to-br from-blue-900 via-blue-700 to-blue-500 text-white overflow-hidden">
+            <!-- عناصر دکوراتیو مدرن -->
+            <div class="absolute inset-0 overflow-hidden">
                 <div
-                    class="hidden md:block  lg:block bg-gray-200 rounded-2xl overflow-hidden shadow-3xl min-h-[40vh] mt-14 floating-image">
-                    <img class="h-full w-full object-cover" src="@/assets/images/Intro.jpg" />
+                    class="absolute -top-40 -right-40 w-80 h-80 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob">
+                </div>
+                <div
+                    class="absolute -bottom-40 -left-40 w-80 h-80 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000">
+                </div>
+                <div
+                    class="absolute top-40 left-40 w-80 h-80 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000">
+                </div>
+            </div>
+
+            <div class="container mx-auto px-4 py-24 relative z-10">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <!-- محتوای متنی -->
+                    <div class="text-center lg:text-right space-y-8">
+                        <div class="space-y-4">
+                            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                                نرم‌افزار ابری
+                                مدیریت
+                                <br />
+                                <span class="text-yellow-300 text-4xl md:text-5xl lg:text-6xl">
+                                    کسب و کارهای خدماتی
+                                </span>
+
+                            </h1>
+                            <p class="text-xl text-blue-100 mx-auto lg:mx-0 lg:mr-auto pt-10">
+                                از ثبت درخواست تا تحلیل داده‌های مدیریتی، همه در یک پلتفرم
+                            </p>
+                        </div>
+
+                        <!-- فرم دریافت شماره -->
+                        <div class="space-y-4">
+                            <div
+                                class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-stretch max-w-md mx-auto lg:mx-0">
+                                <div class="relative flex-grow">
+                                    <input id="phone" v-model="phone" type="tel" inputmode="tel"
+                                        placeholder="شماره موبایل (09...)"
+                                        class="w-full h-14 py-4 px-6 text-gray-800 font-medium rounded-full focus:outline-none focus:ring-4 focus:ring-yellow-300 focus:ring-opacity-50 transition-all duration-300 shadow-lg"
+                                        :class="{ 'ring-2 ring-green-400': phoneValid, 'ring-2 ring-red-400': phone && !phoneValid }" />
+                                </div>
+                                <button @click="onSubmit"
+                                    class="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold h-14 px-8 rounded-full whitespace-nowrap transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center gap-2">
+                                    <span>شروع رایگان</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                        fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                            d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <!-- پیام‌های وضعیت -->
+                            <div class="space-y-2">
+                                <p class="text-lg text-yellow-300 font-semibold">
+                                    سه روز تست رایگان
+                                </p>
+                                <p v-if="submitted && phoneValid"
+                                    class="text-green-300 bg-green-900 bg-opacity-30 rounded-lg py-2 px-4">
+                                    متشکریم! شماره شما ثبت شد: <span class="font-bold">{{ phone }}</span>
+                                </p>
+                                <p v-if="submitted && !phoneValid"
+                                    class="text-red-300 bg-red-900 bg-opacity-30 rounded-lg py-2 px-4">
+                                    لطفاً یک شماره موبایل معتبر وارد کنید
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- ویژگی‌های کلیدی -->
+                        <div class="grid grid-cols-2 gap-4 pt-6 max-w-md mx-auto lg:mx-0">
+                            <div class="flex items-center gap-2 text-sm">
+                                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                                <span>مدیریت منطقه ای تکنسی نها</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm">
+                                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                                <span>CRM پیگیری مشتری</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm">
+                                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                                <span>گزارش های تحلیلی</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm">
+                                <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                                <span>سیستم نوتیفیکیشن رایگان</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- تصویر دمو -->
+                    <div class="relative">
+                        <div
+                            class="relative bg-gradient-to-br from-white to-blue-100 rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-500">
+                            <img class="w-full h-auto object-cover" src="@/assets/images/Intro.jpg"
+                                alt="دموی نرم‌افزار مدیریت خدمات میدانی" />
+                            <!-- افکت شناور روی تصویر -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent"></div>
+                        </div>
+
+                        <!-- عناصر شناور اضافی -->
+                        <div
+                            class="absolute -top-6 -left-6 w-24 h-24 bg-yellow-400 rounded-full opacity-20 animate-pulse">
+                        </div>
+                        <div
+                            class="absolute -bottom-8 -right-8 w-32 h-32 bg-blue-300 rounded-full opacity-30 animate-pulse animation-delay-1000">
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -54,11 +121,10 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed } from 'vue'
 
 const phone = ref('')
 const submitted = ref(false)
-const floatingContainer = ref(null)
 
 const phoneValid = computed(() => {
     const re = /^09\d{9}$/
@@ -68,133 +134,40 @@ const phoneValid = computed(() => {
 function onSubmit() {
     submitted.value = true
     if (phoneValid.value) {
-        // اینجا می‌توانید درخواست ارسال OTP یا ذخیره شماره را اضافه کنید
+        // ارسال درخواست
+        console.log('شماره معتبر:', phone.value)
     }
 }
-
-// افزودن انیمیشن با حرکت موس
-onMounted(() => {
-    // انیمیشن عناصر شناور
-    const floatingElements = document.querySelectorAll('.floating-element');
-    floatingElements.forEach(el => {
-        el.style.animation = `float ${3 + Math.random() * 4}s ease-in-out infinite`;
-        el.style.animationDelay = `${Math.random() * 2}s`;
-    });
-
-    // حرکت حباب‌ها و تصویر با موس
-    const section = document.querySelector('section');
-    section.addEventListener('mousemove', (e) => {
-        const { clientX, clientY } = e;
-        const x = (clientX / window.innerWidth) * 2 - 1;
-        const y = (clientY / window.innerHeight) * 2 - 1;
-
-        // حرکت حباب‌ها با حرکت موس (اثر پارالکس)
-        floatingElements.forEach(el => {
-            const depth = parseFloat(el.getAttribute('data-depth'));
-            const moveX = x * 30 * depth;
-            const moveY = y * 30 * depth;
-
-            el.style.transform = `translate(${moveX}px, ${moveY}px)`;
-        });
-
-        // حرکت تصویر با موس
-        const image = document.querySelector('.floating-image');
-        if (image) {
-            const moveX = x * 15; // حرکت کمتر برای طبیعی‌تر بودن
-            const moveY = y * 15;
-            image.style.transform = `translate(${moveX}px, ${moveY}px)`;
-        }
-    });
-});
 </script>
 
 <style scoped>
-input:focus {
-    outline: none;
-}
+@keyframes blob {
+    0% {
+        transform: translate(0px, 0px) scale(1);
+    }
 
-/* عناصر شناور */
-.floating-elements {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-    overflow: hidden;
-}
+    33% {
+        transform: translate(30px, -50px) scale(1.1);
+    }
 
-.floating-element {
-    position: absolute;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(5px);
-    transition: transform 0.1s ease-out;
-}
+    66% {
+        transform: translate(-20px, 20px) scale(0.9);
+    }
 
-.element-1 {
-    width: 80px;
-    height: 80px;
-    top: 10%;
-    left: 10%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 70%);
-}
-
-.element-2 {
-    width: 120px;
-    height: 120px;
-    top: 60%;
-    right: 15%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 70%);
-}
-
-.element-3 {
-    width: 60px;
-    height: 60px;
-    bottom: 20%;
-    left: 20%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 70%);
-}
-
-.element-4 {
-    width: 100px;
-    height: 100px;
-    top: 30%;
-    right: 25%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 70%);
-}
-
-.element-5 {
-    width: 70px;
-    height: 70px;
-    bottom: 40%;
-    left: 70%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 70%);
-}
-
-.element-6 {
-    width: 30px;
-    height: 30px;
-    top: 15%;
-    right: 5%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 70%);
-}
-
-@keyframes float {
-
-    0%,
     100% {
-        transform: translateY(0) rotate(0deg);
-    }
-
-    50% {
-        transform: translateY(-20px) rotate(5deg);
+        transform: translate(0px, 0px) scale(1);
     }
 }
 
-/* انیمیشن تصویر */
-.floating-image {
-    transition: transform 0.1s ease-out;
+.animate-blob {
+    animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+    animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+    animation-delay: 4s;
 }
 </style>

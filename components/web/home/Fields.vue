@@ -2,11 +2,10 @@
     <section class="bg-white py-12 px-4 sm:px-6 lg:px-8" dir="rtl">
         <div class="max-w-7xl mx-auto text-center ">
             <h1 class="text-4xl sm:text-5xl lg:text-4xl font-bold text-gray-900 mb-4 mt-10">
-                ساخته شده برای کسب‌وکارهای خدمات میدانی
+                ویژه کسب و کارهایی که خدمات سرویس در محل ارائه می دن
             </h1>
             <p class="text-sm sm:text-xl lg:text-sm text-gray-600 mb-12 max-w-3xl mx-auto">
-                شهابان را برای رشد کسب‌وکارتان سفارشی کنید. برنامه‌ریزی مشاغل، اعزام،
-                صدور فاکتور و دریافت پرداخت همه در یک مکان.
+                به آسانی درخواست هایی که داری رو مدیریت کن و وسب و کارت رو رشد بده
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="text-center mt-10">
@@ -20,8 +19,8 @@
                     </div>
                     <h2 class="text-2xl font-semibold text-gray-900 mb-2">تهویه مطبوع</h2>
                     <p class="text-gray-600 mb-4 text-sm px-4 min-h-[80px]">
-                        با برنامه‌های خدماتی، پیشنهادهای فروش، کتاب قیمت و موارد بیشتر، مشاغل تهویه مطبوع بیشتری در طول
-                        سال تضمین کنید.
+                        با برنامه‌های خدماتی، پیشنهادهای فروش و ... خدمات بیشتری در طول
+                        سال انجام دهید.
                     </p>
                     <a href="#" class="text-gray-400 font-medium hover:underline">
                         ...
@@ -40,7 +39,7 @@
                     </div>
                     <h2 class="text-2xl font-semibold text-gray-900 mb-2">تعمیر لوازم خانگی</h2>
                     <p class="text-gray-600 mb-4 text-sm px-4 min-h-[80px]">
-                        با مدیریت موجودی و رزرو آنلاین، کسب‌وکار تعمیر لوازم خانگی خود را کارآمدتر مدیریت کنید.
+                        با مدیریت مکانیابی و رزرو آنلاین، کسب‌وکار تعمیر لوازم خانگی خود را کارآمدتر مدیریت کنید.
                     </p>
                     <a href="#" class="text-gray-400 font-medium hover:underline">
                         ...
@@ -57,8 +56,8 @@
                     </div>
                     <h2 class="text-2xl font-semibold text-gray-900 mb-2">لوله‌کشی</h2>
                     <p class="text-gray-600 mb-4 text-sm px-4 min-h-[80px]">
-                        با رزرو آنلاین و پیشنهادهای فروش همه در یک مکان، مشاغل لوله‌کشی بیشتری برنده شوید و معاملات
-                        بزرگ‌تری ببندید.
+                        با رزرو آنلاین و پیشنهادهای جغرافیایی همه در یک جا مشاغل لوله‌کشی بیشتری بپذیرید و به کارهای
+                        بیشتر فکر کنید
                     </p>
                     <a href="#" class="text-gray-400 font-medium hover:underline">
                         ...
@@ -92,8 +91,8 @@
                     </div>
                     <h2 class="text-2xl font-semibold text-gray-900 mb-2">ساختمان</h2>
                     <p class="text-gray-600 mb-4 text-sm px-4 min-h-[80px]">
-                        با برنامه‌های خدماتی، پیشنهادهای فروش و موارد بیشتر، مشاغل درب گاراژ بیشتری برنده شوید و
-                        کسب‌وکار تکراری را افزایش دهید.
+                        با برنامه‌های خدماتی، پیشنهادهای حرفه ای و...، به مشاغل ساختمانی بیشتری وارد شوید و
+                        کسب‌وکار را توسعه دهید.
                     </p>
                     <a href="#" class="text-gray-400 font-medium hover:underline">
                         ...
@@ -110,7 +109,7 @@
                     </div>
                     <h2 class="text-2xl font-semibold text-gray-900 mb-2">آسانسور</h2>
                     <p class="text-gray-600 mb-4 text-sm px-4 min-h-[80px]">
-                        با رزرو آنلاین، اعزام سریع و برنامه‌ریزی، کسب‌وکار قفل‌سازی خود را کارآمدتر کنید.
+                        با رزرو آنلاین، اعزام سریع و برنامه‌ریزی، کسب‌وکار خود را کارآمدتر کنید.
                     </p>
                     <a href="#" class="text-gray-400 font-medium hover:underline">
                         ...
@@ -128,8 +127,7 @@
                     </div>
                     <h2 class="text-2xl font-semibold text-gray-900 mb-2">حیوانات خانگی</h2>
                     <p class="text-gray-600 mb-4 text-sm px-4 min-h-[80px]">
-                        با تمام ابزارهایی که برای مدیریت و رشد عملیات خود نیاز دارید، کسب‌وکار جمع‌آوری زباله شماره ۱
-                        باشید.
+                        با تمام ابزارهایی که برای مدیریت و رشد عملیات خود نیاز دارید، کسب‌وکار شماره ۱ باشید.
                     </p>
                     <a href="#" class="text-gray-400 font-medium hover:underline">
                         ...
