@@ -1,9 +1,9 @@
 <template>
-    <section class="bg-gray-50 py-16" dir="rtl">
-        <div class="px-6 lg:px-8 grid lg:grid-cols-12 gap-12">
+    <section class="bg-gray-50 py-28" dir="rtl">
+        <div class="px-6 lg:px-8 grid lg:grid-cols-12 gap-12 py-20">
             <div class="col-span-3">
                 <h2 class="text-4xl font-bold text-gray-900 mb-4">
-                    سوالات <br /> متداول
+                    سوالات متداول
                 </h2>
                 <p class="text-gray-600">
                     اگر سوال دیگری دارید به ما اطلاع دهید، برای پشتیبانی همیشه کنار شما هستیم!

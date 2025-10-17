@@ -1,55 +1,85 @@
 <template>
   <div>
-    <section class="py-16 px-6 text-center bg-white mt-20">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4">چرا شهابان</h2>
-      <p class="text-gray-600 mb-10">
-        بیش از ۱۲۰٬۰۰۰ متخصص خدمات میدانی به شهابان اعتماد کرده‌اند — سریع و بدون دردسر شروع کنید.
-      </p>
-
-      <!-- دکمه‌های تب -->
-      <div class="flex flex-wrap justify-center gap-4 mb-12">
-        <button v-for="tab in tabs" :key="tab.key" @click="activeTab = tab.key" :class="[
-          'px-6 py-2 rounded-full font-medium border transition-all duration-300 ease-in-out',
-          activeTab === tab.key
-            ? 'bg-blue-600 text-white border-blue-600 shadow-md'
-            : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100 hover:shadow-sm'
-        ]">
-          {{ tab.label }}
-        </button>
+    <section
+      class="py-20 px-6 text-center bg-gradient-to-br from-blue-900 via-blue-700 to-blue-500 relative overflow-hidden">
+      <!-- عناصر دکوراتیو -->
+      <div class="absolute inset-0 overflow-hidden">
+        <div
+          class="absolute -top-40 -right-40 w-96 h-96 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob">
+        </div>
+        <div
+          class="absolute -bottom-40 -left-40 w-96 h-96 bg-yellow-300 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-2000">
+        </div>
+        <div
+          class="absolute top-1/2 left-1/2 w-96 h-96 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-4000">
+        </div>
       </div>
 
-      <!-- محتوای تب‌ها با انیمیشن fade-in -->
-      <transition name="fade" mode="out-in">
-        <div v-if="activeTab === 'easyOnboard'" class="grid md:grid-cols-3 gap-10 text-right max-w-5xl mx-auto">
-          <div v-for="item in easyOnboardItems" :key="item.title"
-            class="flex flex-col items-center md:items-start text-center md:text-right p-4 rounded-lg transition-all duration-300 hover:shadow-md hover:bg-gray-50">
-            <div class="text-blue-600 w-10 h-10 mb-4" v-html="item.icon"></div>
-            <h3 class="text-lg font-semibold mb-2">{{ item.title }}</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">{{ item.text }}</p>
-          </div>
+      <div class="relative z-10">
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">چرا شهابان</h2>
+        <p class="text-blue-100 text-xl mb-12 max-w-3xl mx-auto">
+          بیش از ۱۲۰٬۰۰۰ متخصص خدمات میدانی به شهابان اعتماد کرده‌اند — سریع و بدون دردسر شروع کنید.
+        </p>
+
+        <!-- دکمه‌های تب -->
+        <div class="flex flex-wrap justify-center gap-4 mb-16">
+          <button v-for="tab in tabs" :key="tab.key" @click="activeTab = tab.key" :class="[
+            'px-8 py-3 rounded-full font-bold border-2 transition-all duration-300 ease-in-out transform hover:scale-105',
+            activeTab === tab.key
+              ? 'bg-yellow-400 text-gray-900 border-yellow-400 shadow-2xl scale-105'
+              : 'bg-white/10 text-white border-white/30 hover:bg-white/20 backdrop-blur-sm'
+          ]">
+            {{ tab.label }}
+          </button>
         </div>
 
-        <div v-else-if="activeTab === 'easyUse'" class="grid md:grid-cols-3 gap-10 text-right max-w-5xl mx-auto">
-          <div v-for="item in easyUseItems" :key="item.title"
-            class="flex flex-col items-center md:items-start text-center md:text-right p-4 rounded-lg transition-all duration-300 hover:shadow-md hover:bg-gray-50">
-            <div class="text-blue-600 w-10 h-10 mb-4" v-html="item.icon"></div>
-            <h3 class="text-lg font-semibold mb-2">{{ item.title }}</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">{{ item.text }}</p>
+        <!-- محتوای تب‌ها با انیمیشن fade-in -->
+        <transition name="fade" mode="out-in">
+          <div v-if="activeTab === 'easyOnboard'" class="grid md:grid-cols-3 gap-8 text-right max-w-6xl mx-auto">
+            <div v-for="(item, index) in easyOnboardItems" :key="item.title"
+              class="bg-white/10 backdrop-blur-md rounded-3xl p-8 transition-all duration-300 hover:bg-white/20 hover:scale-105 hover:-translate-y-2 border border-white/20 group cursor-pointer animate-fade-in-up"
+              :style="{ animationDelay: `${index * 0.1}s` }">
+              <div
+                class="text-yellow-300 w-16 h-16 mb-6 mx-auto md:mx-0 bg-yellow-400/20 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform"
+                v-html="item.icon"></div>
+              <h3 class="text-xl font-bold mb-3 text-white text-center md:text-right">{{ item.title }}</h3>
+              <p class="text-blue-100 text-base leading-relaxed text-center md:text-right">{{ item.text }}</p>
+            </div>
           </div>
-        </div>
 
-        <div v-else-if="activeTab === 'aiHelp'" class="grid md:grid-cols-3 gap-10 text-right max-w-5xl mx-auto">
-          <div v-for="item in aiHelpItems" :key="item.title"
-            class="flex flex-col items-center md:items-start text-center md:text-right p-4 rounded-lg transition-all duration-300 hover:shadow-md hover:bg-gray-50">
-            <div class="text-blue-600 w-10 h-10 mb-4" v-html="item.icon"></div>
-            <h3 class="text-lg font-semibold mb-2">{{ item.title }}</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">{{ item.text }}</p>
+          <div v-else-if="activeTab === 'easyUse'" class="grid md:grid-cols-3 gap-8 text-right max-w-6xl mx-auto">
+            <div v-for="(item, index) in easyUseItems" :key="item.title"
+              class="bg-white/10 backdrop-blur-md rounded-3xl p-8 transition-all duration-300 hover:bg-white/20 hover:scale-105 hover:-translate-y-2 border border-white/20 group cursor-pointer animate-fade-in-up"
+              :style="{ animationDelay: `${index * 0.1}s` }">
+              <div
+                class="text-yellow-300 w-16 h-16 mb-6 mx-auto md:mx-0 bg-yellow-400/20 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform"
+                v-html="item.icon"></div>
+              <h3 class="text-xl font-bold mb-3 text-white text-center md:text-right">{{ item.title }}</h3>
+              <p class="text-blue-100 text-base leading-relaxed text-center md:text-right">{{ item.text }}</p>
+            </div>
           </div>
-        </div>
-      </transition>
+
+          <div v-else-if="activeTab === 'aiHelp'" class="grid md:grid-cols-3 gap-8 text-right max-w-6xl mx-auto">
+            <div v-for="(item, index) in aiHelpItems" :key="item.title"
+              class="bg-gradient-to-br from-purple-600 to-pink-600 backdrop-blur-md rounded-3xl p-8 transition-all duration-300 hover:shadow-2xl hover:scale-105 hover:-translate-y-2 border-2 border-purple-300 group cursor-pointer animate-fade-in-up relative overflow-hidden"
+              :style="{ animationDelay: `${index * 0.1}s` }">
+              <div
+                class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16 group-hover:scale-150 transition-transform duration-500">
+              </div>
+              <div
+                class="text-white w-16 h-16 mb-6 mx-auto md:mx-0 bg-white/20 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform relative z-10"
+                v-html="item.icon"></div>
+              <h3 class="text-xl font-bold mb-3 text-white text-center md:text-right relative z-10">{{ item.title }}
+              </h3>
+              <p class="text-purple-100 text-base leading-relaxed text-center md:text-right relative z-10">{{ item.text
+                }}</p>
+              <div class="absolute bottom-3 left-3 w-2 h-2 bg-green-400 rounded-full animate-ping"></div>
+            </div>
+          </div>
+        </transition>
+      </div>
     </section>
   </div>
-
 </template>
 
 <script setup>
@@ -163,11 +193,56 @@ section {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.3s ease;
+  transition: opacity 0.4s ease;
 }
 
 .fade-enter-from,
 .fade-leave-to {
+  opacity: 0;
+}
+
+@keyframes blob {
+
+  0%,
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
   opacity: 0;
 }
 </style>

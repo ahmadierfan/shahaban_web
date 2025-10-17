@@ -1,10 +1,13 @@
 <template>
     <div>
         <WebHomeIntro />
+        <WebHomeOptions />
+        <WebHomeProcessFlow />
         <WebHomeFields />
-        <WebHomeTestimonialCard />
+        <WebHomeFreeFeaturesSection />
         <WebHomeFaqSection />
         <WebHomeWhyWe />
+        <WebHomeTestimonialCard />
     </div>
 </template>
 

@@ -2,10 +2,10 @@
     <section class="bg-white py-12 px-4 sm:px-6 lg:px-8" dir="rtl">
         <div class="max-w-7xl mx-auto text-center ">
             <h1 class="text-4xl sm:text-5xl lg:text-4xl font-bold text-gray-900 mb-4 mt-10">
-                ویژه کسب و کارهایی که خدمات سرویس در محل ارائه می دن
+                ویژه کسب و کارهایی که خدمات سرویس در محل ارائه می دهند
             </h1>
             <p class="text-sm sm:text-xl lg:text-sm text-gray-600 mb-12 max-w-3xl mx-auto">
-                به آسانی درخواست هایی که داری رو مدیریت کن و وسب و کارت رو رشد بده
+                به آسانی درخواست هایی که داری رو در کوتاه ترین زمان به نتیجه برسون
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="text-center mt-10">
