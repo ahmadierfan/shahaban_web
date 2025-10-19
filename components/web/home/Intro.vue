@@ -46,7 +46,7 @@
                                         :class="{ 'ring-2 ring-green-400': phoneValid, 'ring-2 ring-red-400': phone && !phoneValid }" />
                                 </div>
                                 <button @click="onSubmit"
-                                    class="relative bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold h-16 px-12 rounded-2xl whitespace-nowrap transition-all duration-300 transform hover:scale-110 hover:shadow-2xl flex items-center justify-center gap-2 text-lg group overflow-hidden">
+                                    class="relative bg-yellow-400 hover:bg-yellow-500 text-gray-900  h-16 px-12 rounded-2xl whitespace-nowrap transition-all duration-300 transform hover:scale-110 hover:shadow-2xl flex items-center justify-center gap-2 text-lg group overflow-hidden">
                                     <div
                                         class="absolute inset-0 bg-gradient-to-r from-yellow-300 to-yellow-400 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                                     </div>
@@ -68,7 +68,7 @@
                                 </p>
                                 <p v-if="submitted && phoneValid"
                                     class="text-green-300 bg-green-900 bg-opacity-40 rounded-xl py-3 px-4 backdrop-blur-sm animate-slide-down">
-                                    ✓ شماره شما ثبت شد: <span class="font-bold">{{ phone }}</span>
+                                    ✓ شماره شما ثبت شد: <span class="">{{ phone }}</span>
                                 </p>
                                 <p v-if="submitted && !phoneValid"
                                     class="text-red-300 bg-red-900 bg-opacity-40 rounded-xl py-3 px-4 backdrop-blur-sm animate-shake">
@@ -92,7 +92,7 @@
                                             d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                     </svg>
                                 </div>
-                                <h3 class="text-xl font-bold mb-2">مدیریت تکنسین‌ها</h3>
+                                <h3 class="text-xl  mb-2">مدیریت تکنسین‌ها</h3>
                                 <p class="text-blue-100 text-sm">ردیابی لحظه‌ای و تخصیص هوشمند</p>
                             </div>
 
@@ -107,7 +107,7 @@
                                             d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                                     </svg>
                                 </div>
-                                <h3 class="text-xl font-bold mb-2">مدیریت درخواست‌ها</h3>
+                                <h3 class="text-xl  mb-2">مدیریت درخواست‌ها</h3>
                                 <p class="text-blue-100 text-sm">ثبت و پیگیری تا پایان کار</p>
                             </div>
 
@@ -125,8 +125,8 @@
                                             d="M13 10V3L4 14h7v7l9-11h-7z" />
                                     </svg>
                                 </div>
-                                <h3 class="text-xl font-bold mb-2 relative z-10">هوش مصنوعی</h3>
-                                <p class="text-purple-100 text-sm relative z-10">مسیریابی و برنامه‌ریزی خودکار</p>
+                                <h3 class="text-xl  mb-2 relative z-10">هوش مصنوعی</h3>
+                                <p class="text-purple-100 text-sm relative z-10">همراه تکنسین و مشتری</p>
                                 <div class="absolute bottom-2 left-2 w-2 h-2 bg-green-400 rounded-full animate-ping">
                                 </div>
                             </div>
@@ -142,7 +142,7 @@
                                             d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                                     </svg>
                                 </div>
-                                <h3 class="text-xl font-bold mb-2">گزارش و تحلیل</h3>
+                                <h3 class="text-xl  mb-2">گزارش و تحلیل</h3>
                                 <p class="text-blue-100 text-sm">داشبورد مدیریتی لحظه‌ای</p>
                             </div>
                         </div>
