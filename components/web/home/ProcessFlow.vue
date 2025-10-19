@@ -1,5 +1,6 @@
 <template>
-    <div class="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 py-8 px-4 overflow-hidden">
+    <div ref="container"
+        class="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 py-8 px-4 overflow-hidden">
         <!-- Animated Background Elements -->
         <div
             class="absolute top-10 left-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse">
@@ -37,8 +38,6 @@
                     <div class="absolute top-1/2 right-4 h-3 bg-gradient-to-l from-green-400 to-cyan-400 rounded-full transform -translate-y-1/2 z-10"
                         :style="{ width: currentProgress + '%' }"></div>
 
-
-
                     <!-- Step Indicators -->
                     <div class="flex justify-between relative z-20">
                         <div v-for="(step, index) in steps" :key="index"
@@ -50,7 +49,7 @@
                             <!-- Step Circle -->
                             <div class="relative">
                                 <!-- Outer Ring Animation -->
-                                <div v-if="index === activeStep"
+                                <div v-if="index === activeStep && isInView"
                                     class="absolute inset-0 rounded-full animate-ping bg-green-400 opacity-60"></div>
 
                                 <!-- Main Circle -->
@@ -91,18 +90,18 @@
                     <!-- Floating Action Card -->
                     <div class="bg-gradient-to-br from-white to-blue-50 rounded-2xl shadow-2xl p-6 md:p-8 transform transition-all duration-700"
                         :class="{
-                            'animate-slide-in-right': direction === 'next',
-                            'animate-slide-in-left': direction === 'prev'
+                            'animate-slide-in-right': direction === 'next' && isInView,
+                            'animate-slide-in-left': direction === 'prev' && isInView
                         }">
                         <div class="flex flex-col lg:flex-row items-center gap-8">
                             <!-- Image/Icon Section -->
                             <div class="w-full lg:w-2/5 flex justify-center">
                                 <div class="relative">
                                     <!-- Floating Elements -->
-                                    <div
+                                    <div v-if="isInView"
                                         class="absolute -top-4 -left-4 w-24 h-24 bg-cyan-400/20 rounded-full animate-float">
                                     </div>
-                                    <div
+                                    <div v-if="isInView"
                                         class="absolute -bottom-4 -right-4 w-20 h-20 bg-green-400/20 rounded-full animate-float-delayed">
                                     </div>
 
@@ -192,7 +191,7 @@
                         {{ isAutoProgress ? 'توقف خودکار' : 'شروع خودکار' }}
                     </button>
 
-                    <div class="flex items-center text-green-300" v-if="isAutoProgress">
+                    <div class="flex items-center text-green-300" v-if="isAutoProgress && isInView">
                         <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse ml-2"></div>
                         <span class="text-sm">هر مرحله: ۴ ثانیه</span>
                     </div>
@@ -211,6 +210,8 @@ const currentProgress = ref(0)
 const progressInterval = ref(null)
 const stepStartTime = ref(Date.now())
 const animationFrame = ref(null)
+const isInView = ref(false)
+const container = ref(null)
 
 // Steps data
 const steps = ref([
@@ -287,12 +288,51 @@ const TOTAL_STEPS = steps.value.length - 1
 const TOTAL_PROGRESS = 100
 const PROGRESS_PER_STEP = TOTAL_PROGRESS / TOTAL_STEPS
 
+// Intersection Observer for detecting when component is in view
+const setupIntersectionObserver = () => {
+    if (!container.value) return
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    isInView.value = true
+                    // Start animations only when component comes into view
+                    if (isAutoProgress.value && activeStep.value < steps.value.length - 1) {
+                        stepStartTime.value = Date.now()
+                        startContinuousProgress()
+                    }
+                } else {
+                    isInView.value = false
+                    // Stop animations when component goes out of view
+                    if (animationFrame.value) {
+                        cancelAnimationFrame(animationFrame.value)
+                    }
+                }
+            })
+        },
+        {
+            threshold: 0.3, // Trigger when 30% of component is visible
+            rootMargin: '0px 0px -100px 0px' // Optional: adjust trigger point
+        }
+    )
+
+    observer.observe(container.value)
+
+    // Cleanup observer on unmount
+    onUnmounted(() => {
+        if (container.value) {
+            observer.unobserve(container.value)
+        }
+    })
+}
+
 // Continuous progress animation with 4-second steps
 const startContinuousProgress = () => {
-    if (!isAutoProgress.value || activeStep.value >= steps.value.length - 1) return
+    if (!isAutoProgress.value || activeStep.value >= steps.value.length - 1 || !isInView.value) return
 
     const updateProgress = () => {
-        if (!isAutoProgress.value || activeStep.value >= steps.value.length - 1) {
+        if (!isAutoProgress.value || activeStep.value >= steps.value.length - 1 || !isInView.value) {
             cancelAnimationFrame(animationFrame.value)
             return
         }
@@ -332,8 +372,8 @@ const nextStep = () => {
             if (animationFrame.value) {
                 cancelAnimationFrame(animationFrame.value)
             }
-        } else {
-            // Continue with next step
+        } else if (isInView.value) {
+            // Continue with next step only if in view
             startContinuousProgress()
         }
     }
@@ -346,8 +386,8 @@ const prevStep = () => {
         stepStartTime.value = Date.now()
         currentProgress.value = (activeStep.value / TOTAL_STEPS) * 100
 
-        // Restart animation if not at last step
-        if (activeStep.value < steps.value.length - 1) {
+        // Restart animation if not at last step and in view
+        if (activeStep.value < steps.value.length - 1 && isInView.value) {
             startContinuousProgress()
         }
     }
@@ -359,13 +399,13 @@ const goToStep = (index) => {
     stepStartTime.value = Date.now()
     currentProgress.value = (index / TOTAL_STEPS) * 100
 
-    // Stop animation if at last step, otherwise restart
+    // Stop animation if at last step, otherwise restart if in view
     if (activeStep.value >= steps.value.length - 1) {
         if (animationFrame.value) {
             cancelAnimationFrame(animationFrame.value)
         }
         currentProgress.value = 100
-    } else {
+    } else if (isInView.value) {
         startContinuousProgress()
     }
 }
@@ -373,7 +413,7 @@ const goToStep = (index) => {
 // Auto progress control
 const toggleAutoProgress = () => {
     isAutoProgress.value = !isAutoProgress.value
-    if (isAutoProgress.value && activeStep.value < steps.value.length - 1) {
+    if (isAutoProgress.value && activeStep.value < steps.value.length - 1 && isInView.value) {
         stepStartTime.value = Date.now()
         startContinuousProgress()
     } else {
@@ -388,7 +428,7 @@ const pauseAutoProgress = () => {
 }
 
 const resumeAutoProgress = () => {
-    if (isAutoProgress.value && activeStep.value < steps.value.length - 1) {
+    if (isAutoProgress.value && activeStep.value < steps.value.length - 1 && isInView.value) {
         stepStartTime.value = Date.now()
         startContinuousProgress()
     }
@@ -398,9 +438,9 @@ const resumeAutoProgress = () => {
 onMounted(() => {
     currentProgress.value = (activeStep.value / TOTAL_STEPS) * 100
     stepStartTime.value = Date.now()
-    if (activeStep.value < steps.value.length - 1) {
-        startContinuousProgress()
-    }
+
+    // Setup intersection observer instead of immediately starting
+    setupIntersectionObserver()
 })
 
 // Cleanup
