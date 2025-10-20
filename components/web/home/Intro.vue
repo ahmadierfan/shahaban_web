@@ -63,7 +63,7 @@
 
                             <!-- پیام‌های وضعیت -->
                             <div class="space-y-3">
-                                <p class="text-lg text-yellow-300 font-semibold animate-pulse-slow">
+                                <p class="text-lg text-yellow-300 animate-pulse-slow">
                                     ۳ روز استفاده رایگان • بدون نیاز به کارت بانکی
                                 </p>
                                 <p v-if="submitted && phoneValid"
