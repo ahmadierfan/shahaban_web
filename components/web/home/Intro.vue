@@ -34,46 +34,73 @@
                                 اولین نرم‌افزار ابری مدیریت کسب‌وکارهای خدماتی
                             </h1>
                         </div>
-                        <div class="space-y-6 max-w-2xl mx-auto animate-fade-in-up animation-delay-800">
-                            <div class="flex flex-col sm:flex-row gap-4 justify-center items-stretch">
-                                <div class="relative flex-grow group">
-                                    <div
-                                        class="absolute inset-0 bg-gradient-to-r from-yellow-400 to-yellow-300 rounded-2xl blur opacity-30 group-hover:opacity-50 transition-opacity">
-                                    </div>
-                                    <input id="phone" v-model="phone" type="tel" inputmode="tel"
-                                        placeholder="شماره موبایل (09...)"
-                                        class="relative w-full h-16 py-4 px-6 text-gray-800 text-lg font-medium rounded-2xl focus:outline-none focus:ring-4 focus:ring-yellow-300 focus:ring-opacity-50 transition-all duration-300 shadow-xl transform hover:scale-105"
-                                        :class="{ 'ring-2 ring-green-400': phoneValid, 'ring-2 ring-red-400': phone && !phoneValid }" />
-                                </div>
-                                <button @click="onSubmit"
-                                    class="relative bg-yellow-400 hover:bg-yellow-500 text-gray-900  h-16 px-12 rounded-2xl whitespace-nowrap transition-all duration-300 transform hover:scale-110 hover:shadow-2xl flex items-center justify-center gap-2 text-lg group overflow-hidden">
-                                    <div
-                                        class="absolute inset-0 bg-gradient-to-r from-yellow-300 to-yellow-400 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                                    </div>
-                                    <span class="relative z-10">شروع رایگان</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                        class="relative z-10 h-6 w-6 transform group-hover:translate-x-1 transition-transform"
-                                        viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd"
-                                            d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </button>
-                            </div>
 
-                            <!-- پیام‌های وضعیت -->
-                            <div class="space-y-3">
-                                <p class="text-lg text-yellow-300 animate-pulse-slow">
-                                    ۳ روز استفاده رایگان • بدون نیاز به کارت بانکی
-                                </p>
-                                <p v-if="submitted && phoneValid"
-                                    class="text-green-300 bg-green-900 bg-opacity-40 rounded-xl py-3 px-4 backdrop-blur-sm animate-slide-down">
-                                    ✓ شماره شما ثبت شد: <span class="">{{ phone }}</span>
-                                </p>
-                                <p v-if="submitted && !phoneValid"
-                                    class="text-red-300 bg-red-900 bg-opacity-40 rounded-xl py-3 px-4 backdrop-blur-sm animate-shake">
-                                    لطفاً یک شماره موبایل معتبر وارد کنید
-                                </p>
+                        <!-- باکس فرم -->
+                        <div class="animate-fade-in-up animation-delay-800">
+                            <div
+                                class="bg-white/10 backdrop-blur-md rounded-3xl p-6 md:p-8 border border-white/20 shadow-2xl max-w-2xl mx-auto">
+                                <div class="space-y-6">
+                                    <!-- عنوان فرم -->
+                                    <div class="text-center space-y-2">
+                                        <h3 class="text-2xl font-bold text-white">شروع رایگان ۳ روزه</h3>
+                                        <p class="text-yellow-300 text-lg animate-pulse-slow">
+                                            اولین نرم‌افزار اختصاصی کسب‌وکار شما
+                                        </p>
+                                    </div>
+
+                                    <!-- فیلدهای فرم -->
+                                    <div class="grid md:grid-cols-2 gap-4">
+                                        <!-- فیلد نام کسب‌وکار -->
+                                        <div class="relative group">
+                                            <div
+                                                class="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-300 rounded-2xl blur opacity-30 group-hover:opacity-50 transition-opacity">
+                                            </div>
+                                            <input id="businessName" v-model="businessName" type="text"
+                                                placeholder="نام کسب‌وکار"
+                                                class="relative w-full h-14 py-4 px-4 text-gray-800 text-base font-medium rounded-2xl focus:outline-none focus:ring-4 focus:ring-blue-300 focus:ring-opacity-50 transition-all duration-300 shadow-xl transform hover:scale-105"
+                                                :class="{ 'ring-2 ring-green-400': businessNameValid, 'ring-2 ring-red-400': businessName && !businessNameValid }" />
+                                        </div>
+
+                                        <!-- فیلد شماره موبایل -->
+                                        <div class="relative group">
+                                            <div
+                                                class="absolute inset-0 bg-gradient-to-r from-yellow-400 to-yellow-300 rounded-2xl blur opacity-30 group-hover:opacity-50 transition-opacity">
+                                            </div>
+                                            <input id="phone" v-model="phone" type="tel" inputmode="tel"
+                                                placeholder="شماره موبایل"
+                                                class="relative w-full h-14 py-4 px-4 text-gray-800 text-base font-medium rounded-2xl focus:outline-none focus:ring-4 focus:ring-yellow-300 focus:ring-opacity-50 transition-all duration-300 shadow-xl transform hover:scale-105"
+                                                :class="{ 'ring-2 ring-green-400': phoneValid, 'ring-2 ring-red-400': phone && !phoneValid }" />
+                                        </div>
+                                    </div>
+
+                                    <!-- دکمه ارسال -->
+                                    <button @click="onSubmit"
+                                        class="relative bg-yellow-400 hover:bg-yellow-500 text-gray-900 w-full h-14 px-8 rounded-2xl whitespace-nowrap transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center justify-center gap-2 text-lg group overflow-hidden">
+                                        <div
+                                            class="absolute inset-0 bg-gradient-to-r from-yellow-300 to-yellow-400 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                                        </div>
+                                        <span class="relative z-10 font-bold">شروع رایگان</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="relative z-10 h-5 w-5 transform group-hover:translate-x-1 transition-transform"
+                                            viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd"
+                                                d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </button>
+
+                                    <!-- پیام‌های وضعیت -->
+                                    <div class="space-y-3">
+                                        <p v-if="submitted && (!phoneValid || !businessNameValid)"
+                                            class="text-red-300 bg-red-900 bg-opacity-40 rounded-xl py-3 px-4 backdrop-blur-sm animate-shake text-sm">
+                                            لطفاً اطلاعات را به درستی وارد کنید
+                                        </p>
+                                        <p class="text-blue-200 text-sm leading-relaxed">
+                                            • ثبت نام کمتر از ۲ دقیقه زمان می‌برد<br>
+                                            • امکان تست تمامی امکانات به مدت ۳ روز
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -173,9 +200,12 @@
 </template>
 
 <script setup>
+const { public: { appUrl } } = useRuntimeConfig();
+
 import { ref, computed } from 'vue'
 
 const phone = ref('')
+const businessName = ref('')
 const submitted = ref(false)
 
 const phoneValid = computed(() => {
@@ -183,10 +213,14 @@ const phoneValid = computed(() => {
     return re.test(phone.value)
 })
 
+const businessNameValid = computed(() => {
+    return businessName.value.trim().length >= 2
+})
+
 function onSubmit() {
     submitted.value = true
-    if (phoneValid.value) {
-
+    if (phoneValid.value && businessNameValid.value) {
+        window.location.href = appUrl + "register?m=" + phone.value + "&b=" + encodeURIComponent(businessName.value);
     }
 }
 </script>

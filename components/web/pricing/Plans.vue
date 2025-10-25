@@ -37,8 +37,7 @@
         </div>
 
         <!-- کارت‌های قیمت‌گذاری -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mb-16 max-w-6xl mx-auto">
-
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-16 md:mx-28">
             <!-- پلن‌های پولی -->
             <div v-for="(plan, index) in visiblePaidPlans" :key="plan.pk_plan" class="relative group">
                 <div
@@ -68,11 +67,14 @@
 
                     <div class="mb-6">
                         <div class="text-3xl font-bold text-gray-900 mb-2">
-                            {{ formatPrice(getPlanPrice(plan)) }}
-                            <span class="text-lg text-gray-600"> تومان</span>
+                            {{ getPlanPrice(plan) }}
+                            <span class="text-lg text-gray-600" v-if="getPlanPrice(plan) != 'رایگان'"> تومان</span>
                         </div>
-                        <p class="text-gray-600 text-sm">
+                        <p class="text-gray-600 text-sm" v-if="getPlanPrice(plan) != 'رایگان'">
                             ماهانه
+                        </p>
+                        <p class="text-gray-600 text-sm" v-else>
+                            ۷ روز
                         </p>
 
                         <!-- نمایش قیمت اصلی در صورت تخفیف -->
@@ -97,19 +99,6 @@
                                 </svg>
                             </div>
                             <span class="text-gray-700 text-sm">تا {{ plan.maxusers }} کاربر</span>
-                        </div>
-                        <div class="flex items-center space-x-3 space-x-reverse">
-                            <div
-                                class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                                <svg class="w-3 h-3 text-green-600" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M5 13l4 4L19 7" />
-                                </svg>
-                            </div>
-                            <span class="text-gray-700 text-sm">
-                                {{ plan.max_room === 0 ? 'پروژه نامحدود' : `${plan.max_room} پروژه` }}
-                            </span>
                         </div>
 
                         <!-- ویژگی‌های اختصاصی -->
@@ -145,10 +134,10 @@
         </div>
 
         <!-- دکمه نمایش پلن‌های بیشتر -->
-        <div v-if="paidPlans.length > 3" class="text-center mb-16">
+        <div v-if="plans.length > 3" class="text-center mb-16">
             <button @click="showAllPlans = !showAllPlans"
                 class="bg-white text-blue-600 px-6 py-3 rounded-xl font-medium border border-blue-200 hover:bg-blue-50 hover:shadow-md transition-all duration-300 inline-flex items-center space-x-2 space-x-reverse">
-                <span>{{ showAllPlans ? 'نمایش پلن‌های کمتر' : `نمایش ${paidPlans.length - 3} پلن دیگر` }}</span>
+                <span>{{ showAllPlans ? 'نمایش پلن‌های کمتر' : `نمایش ${plans.length - 3} پلن دیگر` }}</span>
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         :d="showAllPlans ? 'M5 15l7-7 7 7' : 'M19 9l-7 7-7-7'" />
@@ -240,17 +229,6 @@ const billingPeriods = [
     { label: 'سالانه', value: 'annually' }
 ]
 
-// ویژگی‌های پلن آزمایشی
-const trialOptions = ref([
-    'مدیریت حداکثر ۵ کاربر',
-    'مدیریت ۳ پروژه خدماتی',
-    'سیستم رزرو نوبت آنلاین',
-    'مدیریت مالی و صورتحساب',
-    'گزارش‌گیری پایه',
-    'پشتیبانی تلفنی و ایمیلی',
-    'دسترسی به اپلیکیشن موبایل'
-])
-
 onMounted(() => {
     getPricing()
 })
@@ -260,14 +238,9 @@ const getPricing = async () => {
     plans.value = data
 }
 
-// فیلتر کردن پلن‌های پولی (غیر آزمایشی)
-const paidPlans = computed(() => {
-    return plans.value.filter(plan => !plan.istrial)
-})
-
 // نمایش پلن‌های پولی
 const visiblePaidPlans = computed(() => {
-    return showAllPlans.value ? paidPlans.value : paidPlans.value.slice(0, 3)
+    return plans.value // همیشه همه پلن‌ها را نمایش بده
 })
 
 // نمایش ویژگی‌های هر پلن
@@ -283,7 +256,7 @@ const toggleShowAllOptions = (planId) => {
 
 // محاسبه قیمت بر اساس نوع پلن و تبدیل به تومان
 const getPlanPrice = (plan) => {
-    if (!plan.price) return 0
+    if (!plan.price) return 'رایگان'
 
     const prices = JSON.parse(plan.price)
     let price = 0
@@ -302,7 +275,7 @@ const getPlanPrice = (plan) => {
     }
 
     // تبدیل از ریال به تومان (تقسیم بر 10)
-    return Math.round(price / 10)
+    return formatPrice(Math.round(price / 10))
 }
 
 // محاسبه قیمت اصلی (بدون تخفیف) و تبدیل به تومان
@@ -357,14 +330,7 @@ const getPlanOptions = (plan) => {
     return JSON.parse(plan.options)
 }
 
-// ایجاد لینک برای پلن آزمایشی
-const getTrialPlanLink = () => {
-    const trialPlan = plans.value.find(plan => plan.istrial)
-    if (trialPlan) {
-        return `/register?plan_id=${trialPlan.pk_plan}&period=trial`
-    }
-    return '/register'
-}
+
 
 // ایجاد لینک برای پلن‌های پولی
 const getPlanLink = (plan) => {
