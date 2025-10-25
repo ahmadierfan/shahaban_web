@@ -9,7 +9,7 @@
                             <img src="/images/logo.png" alt="لوگو شهابان" />
                         </div>
                         <span
-                            class=" text-xl text-gray-800 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+                            class="text-xl text-gray-800 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
                             شهابان
                         </span>
                     </NuxtLink>
@@ -46,7 +46,7 @@
                                 class="absolute top-full right-0 mt-2 w-80 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 z-50 overflow-hidden"
                                 @mouseleave="closeDropdownIfNotChild">
                                 <div class="p-4 border-b border-gray-100 bg-gradient-to-r from-blue-50 to-white">
-                                    <h3 class=" text-gray-800 text-sm uppercase tracking-wider">صنایع هدف</h3>
+                                    <h3 class="text-gray-800 text-sm uppercase tracking-wider">صنایع هدف</h3>
                                     <p class="text-xs text-gray-500 mt-1">راهکارهای تخصصی برای هر صنعت</p>
                                 </div>
 
@@ -116,8 +116,7 @@
                                 class="absolute top-full right-0 mt-2 w-80 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 z-50 overflow-hidden"
                                 @mouseleave="closeDropdownIfNotChild">
                                 <div class="p-4 border-b border-gray-100 bg-gradient-to-r from-green-50 to-white">
-                                    <h3 class=" text-gray-800 text-sm uppercase tracking-wider">راهکارهای
-                                        نرم‌افزاری</h3>
+                                    <h3 class="text-gray-800 text-sm uppercase tracking-wider">راهکارهای نرم‌افزاری</h3>
                                     <p class="text-xs text-gray-500 mt-1">امکانات کامل پلتفرم شهابان</p>
                                 </div>
 
@@ -175,7 +174,7 @@
                 <div class="flex items-center gap-3">
                     <!-- دکمه ورود/پنل کاربری -->
                     <a :href="loginBtnRedirectTo" target="_blank"
-                        class="hidden md:inline-flex items-center gap-2 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-gray-900  py-2.5 px-6 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg shadow-md">
+                        class="hidden md:inline-flex items-center gap-2 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-gray-900 py-2.5 px-6 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg shadow-md">
                         <span>{{ loginBtnText }}</span>
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -193,12 +192,17 @@
                         <span>تماس با ما</span>
                     </a>
 
-                    <!-- منوی موبایل -->
-                    <button @click="isMobileMenuOpen = true"
-                        class="lg:hidden p-2 rounded-xl hover:bg-gray-100 transition-colors duration-300">
-                        <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    <!-- دکمه همبرگر منوی موبایل -->
+                    <button @click="toggleMobileMenu"
+                        class="lg:hidden p-2.5 rounded-xl hover:bg-gray-100 transition-colors duration-300 relative z-50">
+                        <svg v-if="!isMobileMenuOpen" class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                 d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg v-else class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
                 </div>
@@ -206,7 +210,8 @@
         </div>
 
         <!-- منوی موبایل -->
-        <WebMobileMenu :is-open="isMobileMenuOpen" @close="isMobileMenuOpen = false" />
+        <WebMobileMenu :is-open="isMobileMenuOpen" :industries-items="industriesItems" :solutions-items="solutionsItems"
+            :login-btn-text="loginBtnText" :login-btn-redirect-to="loginBtnRedirectTo" @close="closeMobileMenu" />
     </header>
 </template>
 
@@ -305,7 +310,6 @@ const toggleDropdown = (menu) => {
 }
 
 const closeDropdownIfNotChild = (event) => {
-    // اگر موس از منوی آبشاری خارج شد و به دکمه اصلی نرفت، منو را ببند
     const relatedTarget = event.relatedTarget
     if (!relatedTarget || !event.currentTarget.contains(relatedTarget)) {
         setTimeout(() => {
@@ -316,14 +320,28 @@ const closeDropdownIfNotChild = (event) => {
 
 const closeAllDropdowns = () => {
     activeDropdown.value = ''
+}
+
+const toggleMobileMenu = () => {
+    isMobileMenuOpen.value = !isMobileMenuOpen.value
+    // جلوگیری از اسکرول صفحه هنگام باز بودن منو
+    if (isMobileMenuOpen.value) {
+        document.body.style.overflow = 'hidden'
+    } else {
+        document.body.style.overflow = ''
+    }
+}
+
+const closeMobileMenu = () => {
     isMobileMenuOpen.value = false
+    document.body.style.overflow = ''
 }
 
 // مدیریت وضعیت کاربر
 onMounted(() => {
     // بستن منوها با کلیک خارج از منو
     document.addEventListener('click', (e) => {
-        if (!e.target.closest('.relative')) {
+        if (!e.target.closest('.relative') && !e.target.closest('button')) {
             closeAllDropdowns()
         }
     })
@@ -332,8 +350,13 @@ onMounted(() => {
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             closeAllDropdowns()
+            closeMobileMenu()
         }
     })
+})
+
+onUnmounted(() => {
+    document.body.style.overflow = ''
 })
 </script>
 
