@@ -186,8 +186,7 @@ const phoneValid = computed(() => {
 function onSubmit() {
     submitted.value = true
     if (phoneValid.value) {
-        // ارسال درخواست
-        console.log('شماره معتبر:', phone.value)
+
     }
 }
 </script>

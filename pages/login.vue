@@ -57,7 +57,7 @@
                     </div>
 
                     <button :disabled="loadingStore.isLoading"
-                        class="relative w-full py-3 text-white font-semibold rounded-3xl overflow-hidden transition-all duration-500 bg-gradient-to-r from-teal-500 to-pink-500 hover:shadow-[0_0_20px_rgba(236,72,153,0.6)] group disabled:opacity-50"
+                        class="relative w-full py-3 text-white  rounded-3xl overflow-hidden transition-all duration-500 bg-gradient-to-r from-teal-500 to-pink-500 hover:shadow-[0_0_20px_rgba(236,72,153,0.6)] group disabled:opacity-50"
                         @click="sendOtp">
                         <span class="relative z-10">ارسال کد تایید</span>
                         <span
@@ -82,7 +82,7 @@
                         </template>
                     </div>
                     <button :disabled="loadingStore.isLoading"
-                        class="w-full py-3 bg-gradient-to-r from-teal-500 to-pink-500 hover:opacity-90 text-white rounded-xl font-semibold transition disabled:opacity-50"
+                        class="w-full py-3 bg-gradient-to-r from-teal-500 to-pink-500 hover:opacity-90 text-white rounded-xl  transition disabled:opacity-50"
                         @click="verifyOtp">
                         ورود به سیستم
                     </button>
@@ -105,7 +105,7 @@ import { ref, watch, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import { useLoadingStore } from '@/stores/loading'
 
-const toast = useToast()
+//const toast = useToast()
 
 definePageMeta({ layout: 'blank' })
 
@@ -132,7 +132,7 @@ const sendOtp = async () => {
         otpSent.value = true
         nextTick(() => otpRefs.value[0]?.focus()) // فوکوس روی اولین خانه
     } else {
-        toast.error({ title: 'خطا!', message: 'شماره موبایل را صحیح وارد نمایید' })
+        //toast.error({ title: 'خطا!', message: 'شماره موبایل را صحیح وارد نمایید' })
     }
 }
 
@@ -168,7 +168,7 @@ const verifyOtp = async () => {
         $updateAuthHeader(token)
         router.push('/panel')
     } else {
-        toast.error({ title: 'خطا!', message: 'کد ورود را صحیح وارد نمایید' })
+        //toast.error({ title: 'خطا!', message: 'کد ورود را صحیح وارد نمایید' })
     }
 }
 

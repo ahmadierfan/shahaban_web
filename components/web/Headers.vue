@@ -9,7 +9,7 @@
                             <img src="/images/logo.png" alt="لوگو شهابان" />
                         </div>
                         <span
-                            class="font-bold text-xl text-gray-800 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+                            class=" text-xl text-gray-800 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
                             شهابان
                         </span>
                     </NuxtLink>
@@ -18,9 +18,8 @@
                 <!-- منوی اصلی -->
                 <nav class="hidden lg:flex items-center gap-1">
                     <!-- منوی آبشاری صنایع -->
-                    <div class="relative group" @mouseenter="openDropdown('industries')"
-                        @mouseleave="closeDropdown('industries')">
-                        <button
+                    <div class="relative">
+                        <button @click="toggleDropdown('industries')"
                             class="flex items-center gap-2 px-4 py-3 text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 rounded-xl hover:bg-blue-50 group"
                             :class="{
                                 'text-blue-600 bg-blue-50 shadow-sm': activeDropdown === 'industries',
@@ -44,9 +43,10 @@
                             leave-from-class="opacity-100 scale-100 translate-y-0"
                             leave-to-class="opacity-0 scale-95 -translate-y-4">
                             <div v-if="activeDropdown === 'industries'"
-                                class="absolute top-full right-0 mt-2 w-80 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 z-50 overflow-hidden">
+                                class="absolute top-full right-0 mt-2 w-80 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 z-50 overflow-hidden"
+                                @mouseleave="closeDropdownIfNotChild">
                                 <div class="p-4 border-b border-gray-100 bg-gradient-to-r from-blue-50 to-white">
-                                    <h3 class="font-bold text-gray-800 text-sm uppercase tracking-wider">صنایع هدف</h3>
+                                    <h3 class=" text-gray-800 text-sm uppercase tracking-wider">صنایع هدف</h3>
                                     <p class="text-xs text-gray-500 mt-1">راهکارهای تخصصی برای هر صنعت</p>
                                 </div>
 
@@ -88,9 +88,8 @@
                     </div>
 
                     <!-- منوی آبشاری راهکارها -->
-                    <div class="relative group" @mouseenter="openDropdown('solutions')"
-                        @mouseleave="closeDropdown('solutions')">
-                        <button
+                    <div class="relative">
+                        <button @click="toggleDropdown('solutions')"
                             class="flex items-center gap-2 px-4 py-3 text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 rounded-xl hover:bg-blue-50 group"
                             :class="{
                                 'text-blue-600 bg-blue-50 shadow-sm': activeDropdown === 'solutions',
@@ -114,9 +113,10 @@
                             leave-from-class="opacity-100 scale-100 translate-y-0"
                             leave-to-class="opacity-0 scale-95 -translate-y-4">
                             <div v-if="activeDropdown === 'solutions'"
-                                class="absolute top-full right-0 mt-2 w-80 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 z-50 overflow-hidden">
+                                class="absolute top-full right-0 mt-2 w-80 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 z-50 overflow-hidden"
+                                @mouseleave="closeDropdownIfNotChild">
                                 <div class="p-4 border-b border-gray-100 bg-gradient-to-r from-green-50 to-white">
-                                    <h3 class="font-bold text-gray-800 text-sm uppercase tracking-wider">راهکارهای
+                                    <h3 class=" text-gray-800 text-sm uppercase tracking-wider">راهکارهای
                                         نرم‌افزاری</h3>
                                     <p class="text-xs text-gray-500 mt-1">امکانات کامل پلتفرم شهابان</p>
                                 </div>
@@ -174,24 +174,24 @@
                 <!-- دکمه‌های سمت چپ -->
                 <div class="flex items-center gap-3">
                     <!-- دکمه ورود/پنل کاربری -->
-                    <NuxtLink :to="loginBtnRedirectTo"
-                        class="hidden md:inline-flex items-center gap-2 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-gray-900 font-semibold py-2.5 px-6 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg shadow-md">
+                    <a :href="loginBtnRedirectTo" target="_blank"
+                        class="hidden md:inline-flex items-center gap-2 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-gray-900  py-2.5 px-6 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg shadow-md">
                         <span>{{ loginBtnText }}</span>
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M13 7l5 5m0 0l-5 5m5-5H6" />
                         </svg>
-                    </NuxtLink>
+                    </a>
 
                     <!-- دکمه تماس با ما -->
-                    <NuxtLink to="/contact"
+                    <a href="tel:02128427044"
                         class="hidden md:inline-flex items-center gap-2 border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-medium py-2.5 px-4 rounded-full transition-all duration-300">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                         </svg>
                         <span>تماس با ما</span>
-                    </NuxtLink>
+                    </a>
 
                     <!-- منوی موبایل -->
                     <button @click="isMobileMenuOpen = true"
@@ -206,18 +206,20 @@
         </div>
 
         <!-- منوی موبایل -->
-        <MobileMenu :is-open="isMobileMenuOpen" @close="isMobileMenuOpen = false" />
+        <WebMobileMenu :is-open="isMobileMenuOpen" @close="isMobileMenuOpen = false" />
     </header>
 </template>
 
 <script setup>
+const { public: { appUrl } } = useRuntimeConfig();
+
 // وضعیت منوها
 const activeDropdown = ref('')
 const isMobileMenuOpen = ref(false)
 
 // اطلاعات کاربر
 const loginBtnText = ref('ورود / ثبت‌نام')
-const loginBtnRedirectTo = ref('/login')
+const loginBtnRedirectTo = appUrl
 
 // داده‌های منوی صنایع
 const industriesItems = [
@@ -298,16 +300,18 @@ const solutionsItems = [
 ]
 
 // توابع مدیریت منوها
-const openDropdown = (menu) => {
-    activeDropdown.value = menu
+const toggleDropdown = (menu) => {
+    activeDropdown.value = activeDropdown.value === menu ? '' : menu
 }
 
-const closeDropdown = (menu) => {
-    setTimeout(() => {
-        if (activeDropdown.value === menu) {
+const closeDropdownIfNotChild = (event) => {
+    // اگر موس از منوی آبشاری خارج شد و به دکمه اصلی نرفت، منو را ببند
+    const relatedTarget = event.relatedTarget
+    if (!relatedTarget || !event.currentTarget.contains(relatedTarget)) {
+        setTimeout(() => {
             activeDropdown.value = ''
-        }
-    }, 200)
+        }, 200)
+    }
 }
 
 const closeAllDropdowns = () => {
@@ -317,13 +321,12 @@ const closeAllDropdowns = () => {
 
 // مدیریت وضعیت کاربر
 onMounted(() => {
-    if (process.client) {
-        const token = localStorage.getItem('jwt_token')
-        if (token) {
-            loginBtnRedirectTo.value = '/panel'
-            loginBtnText.value = localStorage.getItem('user_mobile') || 'پنل کاربری'
+    // بستن منوها با کلیک خارج از منو
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.relative')) {
+            closeAllDropdowns()
         }
-    }
+    })
 
     // بستن منوها با کلید Escape
     document.addEventListener('keydown', (e) => {

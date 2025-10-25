@@ -2,13 +2,14 @@ import axios from 'axios';
 import { useLoadingStore } from '@/stores/loading';
 
 export default defineNuxtPlugin((nuxtApp) => {
-  const apiBaseUrlFree = "http://127.0.0.1:8000/api"
+  const { public: { apiUrl } } = useRuntimeConfig();
+
   const router = useRouter()
-  const toast = useToast()
+  //const toast = useToast()
 
   const loadingStore = useLoadingStore();
 
-  const freeApi = axios.create({ baseURL: apiBaseUrlFree });
+  const freeApi = axios.create({ baseURL: apiUrl });
   freeApi.defaults.headers.common['Accept-Language'] = "fa";
 
   const updateAuthHeader = (token) => {
@@ -36,7 +37,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     loadingStore.setLoading(false);
 
     if (!error.response) {
-      toast.error({ title: 'خطا!', message: 'دسترسی به اینترنت مقدور نمی باشد' })
+      //toast.error({ title: 'خطا!', message: 'دسترسی به اینترنت مقدور نمی باشد' })
     } else {
 
       const { status, data } = error.response;
@@ -61,7 +62,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       else if (status === 500)
         var message = error.response?.data?.message || 'error.server';
 
-      toast.error({ title: '!', message: message })
+      //toast.error({ title: '!', message: message })
     }
 
     return Promise.reject(error);

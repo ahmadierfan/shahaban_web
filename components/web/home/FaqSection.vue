@@ -2,7 +2,7 @@
     <section class="bg-gray-50 py-28" dir="rtl">
         <div class="px-6 lg:px-8 grid lg:grid-cols-12 gap-12 py-20">
             <div class="col-span-3">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">
+                <h2 class="text-4xl  text-gray-900 mb-4">
                     سوالات متداول
                 </h2>
                 <p class="text-gray-600">

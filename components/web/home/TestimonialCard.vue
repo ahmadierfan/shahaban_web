@@ -3,7 +3,7 @@
         <div class="max-w-7xl mx-auto">
             <!-- Header -->
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">نظرات مشتریان</h2>
+                <h2 class="text-3xl md:text-4xl  text-gray-900 mb-4">نظرات مشتریان</h2>
                 <p class="text-gray-600 text-lg">آنچه مشتریان ما درباره شهابان می‌گویند</p>
             </div>
 
@@ -36,7 +36,7 @@
                                     <img :src="testimonial.avatar" :alt="testimonial.name"
                                         class="w-16 h-16 rounded-full object-cover shadow-lg" />
                                     <div class="text-center md:text-right">
-                                        <p class="font-semibold text-gray-800 text-lg">{{ testimonial.name }}</p>
+                                        <p class=" text-gray-800 text-lg">{{ testimonial.name }}</p>
                                         <p class="text-sm text-gray-500">{{ testimonial.position }}</p>
                                     </div>
                                 </div>
@@ -96,7 +96,7 @@
                     <div class="bg-gray-100 p-6 w-48 h-32 flex flex-col items-center justify-center">
                         <img :src="testimonial.avatar" :alt="testimonial.name"
                             class="w-12 h-12 rounded-full object-cover mb-2 shadow-md" />
-                        <p class="font-semibold text-sm text-gray-800 text-center">{{ testimonial.name }}</p>
+                        <p class=" text-sm text-gray-800 text-center">{{ testimonial.name }}</p>
                         <p class="text-xs text-gray-500 text-center">{{ testimonial.company }}</p>
                     </div>
                 </button>

@@ -5,11 +5,17 @@ export default defineNuxtConfig({
     modules: [
         '@nuxtjs/tailwindcss',
         '@pinia/nuxt',
-        '@nuxt/icon',
-        'nuxt-toast'
+        //'@nuxt/icon',
+        //'nuxt-toast'
     ],
-    icon: {
+    /* icon: {
         collections: ['uil'],
+    },*/
+    runtimeConfig: {
+        public: {
+            appUrl: process.env.APP_URL,
+            apiUrl: process.env.API_URL,
+        }
     },
     app: {
         head: {

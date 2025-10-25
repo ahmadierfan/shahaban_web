@@ -1,332 +1,374 @@
 <template>
-    <section class="pt-28 w-full bg-gray-50 pb-12 px-4 md:px-8">
-        <div class="max-w-6xl mx-auto text-center mb-10">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2 py-8">
-                ابزاری حرفه ای برای رشد کسب و کار
-            </h2>
-            <p class="text-gray-600">پلن خود را انتخاب کن و همین الان رایگان امتحان کن</p>
+    <div class="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-blue-100 py-12 px-4 sm:px-6 lg:px-8">
 
-            <div class="mt-6 flex justify-center items-center gap-3">
-                <span :class="!isAnnual ? 'text-blue-600 font-semibold' : 'text-gray-500'">ماهانه</span>
-                <label class="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" v-model="isAnnual" class="sr-only peer" />
-                    <div class="w-14 h-7 bg-gray-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full
-            after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all
-            peer-checked:bg-blue-600"></div>
-                </label>
-                <span :class="isAnnual ? 'text-blue-600 font-semibold' : 'text-gray-500'">سالانه (۳۰٪ تخفیف)</span>
+        <!-- هدر صفحه -->
+        <div class="text-center mb-16 mt-16">
+            <div
+                class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-2xl flex items-center justify-center shadow-lg">
+                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+            </div>
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">
+                پلن‌های <span
+                    class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">شهابان</span>
+            </h1>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                راه‌حل نرم‌افزاری جامع برای مدیریت کسب‌وکارهای خدماتی
+                <br>
+                <span class="text-blue-600 font-semibold">۷ روز تست رایگان تمامی امکانات</span>
+            </p>
+
+            <!-- انتخابگر نوع پلن -->
+            <div class="mt-8 flex justify-center">
+                <div class="bg-white/80 backdrop-blur-sm rounded-xl p-1.5 shadow-lg border border-blue-100 inline-flex">
+                    <button v-for="(period, index) in billingPeriods" :key="index"
+                        @click="selectedPeriod = period.value" :class="[
+                            'px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300',
+                            selectedPeriod === period.value
+                                ? 'bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-md'
+                                : 'text-gray-600 hover:text-gray-900 hover:bg-blue-50'
+                        ]">
+                        {{ period.label }}
+                    </button>
+                </div>
             </div>
         </div>
 
-        <!-- پلن‌ها -->
-        <div class="grid gap-6 md:grid-cols-4 max-w-7xl mx-auto pb-28">
-            <div v-for="(plan, index) in plans" :key="plan.name"
-                class="bg-white rounded-2xl shadow-xl p-6 flex flex-col justify-between transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl relative overflow-hidden"
-                :class="getPlanCardClass(plan.name)">
+        <!-- کارت‌های قیمت‌گذاری -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mb-16 max-w-6xl mx-auto">
 
+            <!-- پلن‌های پولی -->
+            <div v-for="(plan, index) in visiblePaidPlans" :key="plan.pk_plan" class="relative group">
                 <div
-                    class="absolute inset-0 bg-gradient-to-r from-blue-50 to-white opacity-0 hover:opacity-100 transition-opacity duration-300 z-0">
+                    class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-3xl blur opacity-20 group-hover:opacity-30 transition duration-1000 group-hover:duration-200">
                 </div>
-
-                <div v-if="plan.name === 'استاندارد'"
-                    class="absolute -top-3 -right-3 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-4 pt-4 rounded-full text-sm font-bold shadow-lg z-10 rotate-12">
-                    پیشنهاد شروع
-                </div>
-
-                <div class="relative z-1">
-                    <h3 class="text-2xl font-bold mb-1 text-gray-800">{{ plan.name }}</h3>
-                    <p class="text-gray-500 mb-4">{{ plan.description }}</p>
-
-                    <div class="mb-6">
-                        <template v-if="isAnnual && plan.name !== 'سازمانی'">
-                            <p class="text-gray-400 line-through text-sm">
-                                {{ plan.price.toLocaleString('fa-IR') }} تومان / ماه
-                            </p>
-                            <p class="text-3xl font-bold text-blue-600">
-                                {{ discountedPrice(plan.price).toLocaleString('fa-IR') }} تومان / ماه
-                            </p>
-                            <p class="text-green-600 text-sm">
-                                صرفه‌جویی {{ (plan.price - discountedPrice(plan.price)).toLocaleString('fa-IR') }} تومان
-                            </p>
-                        </template>
-                        <template v-else-if="plan.name !== 'سازمانی'">
-                            <p class="text-3xl font-bold text-blue-600">
-                                {{ plan.price.toLocaleString('fa-IR') }} تومان / ماه
-                            </p>
-                        </template>
-                        <template v-else>
-                            <p class="text-3xl font-bold text-gray-700">
-                                قیمت: توافقی
-                            </p>
-                        </template>
+                <div class="relative bg-white rounded-2xl p-8 shadow-xl border border-blue-100 h-full flex flex-col">
+                    <!-- تخفیف ویژه -->
+                    <div v-if="getDiscount(plan)" class="absolute -top-3 right-6">
+                        <div
+                            class="bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                            {{ getDiscount(plan) }}% تخفیف
+                        </div>
                     </div>
 
-                    <button
-                        class="w-full py-3 rounded-xl transition-all duration-300 font-semibold relative overflow-hidden group mb-6"
-                        :class="getButtonClass(plan.name)" @click="handlePlanAction(plan.name)">
-                        <span class="relative z-10">{{ plan.button }}</span>
-                        <div
-                            class="absolute inset-0 bg-gradient-to-r from-white/20 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900">{{ plan.plan }}</h3>
+                            <p class="text-blue-600 font-medium mt-1">{{ plan.subtitle }}</p>
                         </div>
-                    </button>
-
-                    <!-- لیست ویژگی‌ها با نمایش محدود -->
-                    <ul class="text-right space-y-2 text-gray-700">
-                        <!-- نمایش ویژگی‌ها بر اساس وضعیت توسعه یافته یا نه -->
-                        <li v-for="(f, idx) in getVisibleFeatures(plan)" :key="idx"
-                            class="flex items-center gap-2 transition-transform duration-200 hover:translate-x-1"
-                            :class="{ 'opacity-100': idx < 5 || isPlanExpanded(plan.name), 'opacity-100': idx >= 5 && isPlanExpanded(plan.name) }">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 shrink-0" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                        <div class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 10V3L4 14h7v7l9-11h-7z" />
                             </svg>
-                            <span class="text-sm">{{ f }}</span>
-                        </li>
+                        </div>
+                    </div>
 
-                        <!-- دکمه نمایش بیشتر/کمتر -->
-                        <li v-if="plan.features.length > 5" class="pt-3 border-t border-gray-100">
-                            <button @click="toggleShowMore(plan.name)"
-                                class="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center justify-center gap-2 transition-colors w-full py-2 rounded-lg hover:bg-blue-50">
-                                <span>{{ isPlanExpanded(plan.name) ? 'نمایش کمتر' : `مشاهده ${plan.features.length - 5}
-                                    ویژگی دیگر`
-                                    }}</span>
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                    class="h-4 w-4 transition-transform duration-300"
-                                    :class="{ 'rotate-180': isPlanExpanded(plan.name) }" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
+                    <div class="mb-6">
+                        <div class="text-3xl font-bold text-gray-900 mb-2">
+                            {{ formatPrice(getPlanPrice(plan)) }}
+                            <span class="text-lg text-gray-600"> تومان</span>
+                        </div>
+                        <p class="text-gray-600 text-sm">
+                            ماهانه
+                        </p>
+
+                        <!-- نمایش قیمت اصلی در صورت تخفیف -->
+                        <div v-if="hasDiscount(plan)" class="mt-1">
+                            <span class="text-gray-400 text-sm line-through">
+                                {{ formatPrice(getOriginalPrice(plan)) }} تومان
+                            </span>
+                            <span class="text-green-600 text-sm font-medium mr-1">
+                                {{ getDiscount(plan) }}% صرفه‌جویی
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3 mb-8 flex-grow">
+                        <div class="flex items-center space-x-3 space-x-reverse">
+                            <div
+                                class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                <svg class="w-3 h-3 text-green-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M19 9l-7 7-7-7" />
+                                        d="M5 13l4 4L19 7" />
                                 </svg>
+                            </div>
+                            <span class="text-gray-700 text-sm">تا {{ plan.maxusers }} کاربر</span>
+                        </div>
+                        <div class="flex items-center space-x-3 space-x-reverse">
+                            <div
+                                class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                <svg class="w-3 h-3 text-green-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <span class="text-gray-700 text-sm">
+                                {{ plan.max_room === 0 ? 'پروژه نامحدود' : `${plan.max_room} پروژه` }}
+                            </span>
+                        </div>
+
+                        <!-- ویژگی‌های اختصاصی -->
+                        <div v-for="(option, optionIndex) in visiblePlanOptions(plan)" :key="optionIndex"
+                            class="flex items-center space-x-3 space-x-reverse">
+                            <div
+                                class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                <svg class="w-3 h-3 text-green-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <span class="text-gray-700 text-sm">{{ option }}</span>
+                        </div>
+
+                        <!-- دکمه نمایش بیشتر/کمتر برای ویژگی‌ها -->
+                        <div v-if="getPlanOptions(plan).length > 5" class="pt-2">
+                            <button @click="toggleShowAllOptions(plan.pk_plan)"
+                                class="text-blue-600 text-sm font-medium hover:text-blue-800 transition-colors">
+                                {{ expandedPlans[plan.pk_plan] ? 'نمایش کمتر' : `نمایش ${getPlanOptions(plan).length -
+                                    5} مورد دیگر` }}
                             </button>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
+
+                    <a :href="getPlanLink(plan)"
+                        class="w-full text-center py-3 bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-xl font-medium hover:shadow-lg hover:shadow-blue-200 transition-all duration-300 transform hover:scale-105">
+                        انتخاب پلن
+                    </a>
                 </div>
             </div>
         </div>
 
-    </section>
+        <!-- دکمه نمایش پلن‌های بیشتر -->
+        <div v-if="paidPlans.length > 3" class="text-center mb-16">
+            <button @click="showAllPlans = !showAllPlans"
+                class="bg-white text-blue-600 px-6 py-3 rounded-xl font-medium border border-blue-200 hover:bg-blue-50 hover:shadow-md transition-all duration-300 inline-flex items-center space-x-2 space-x-reverse">
+                <span>{{ showAllPlans ? 'نمایش پلن‌های کمتر' : `نمایش ${paidPlans.length - 3} پلن دیگر` }}</span>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        :d="showAllPlans ? 'M5 15l7-7 7 7' : 'M19 9l-7 7-7-7'" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- بخش پلن سفارشی -->
+        <div class="bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl p-8 shadow-xl mb-16 max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="text-white text-center md:text-right mb-6 md:mb-0 md:mr-8">
+                    <h3 class="text-2xl font-bold mb-3">نیاز خاصی دارید؟</h3>
+                    <p class="text-blue-100 text-lg">
+                        پلن سفارشی متناسب با نیازهای کسب‌وکار خدماتی شما طراحی می‌کنیم
+                    </p>
+                </div>
+                <div class="flex-shrink-0">
+                    <a href="/contact"
+                        class="bg-white text-blue-600 font-medium px-8 py-4 rounded-xl hover:bg-blue-50 hover:shadow-lg transition-all duration-300 transform hover:scale-105 inline-flex items-center space-x-2 space-x-reverse">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
+                        <span>درخواست پلن سفارشی</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- بخش اطلاعات اضافی -->
+        <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-blue-100 max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div>
+                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                    </div>
+                    <h4 class="font-bold text-gray-900 mb-2">امنیت اطلاعات</h4>
+                    <p class="text-gray-600 text-sm">اطلاعات کسب‌وکار شما با بالاترین استانداردهای امنیتی محافظت می‌شود
+                    </p>
+                </div>
+                <div>
+                    <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h4 class="font-bold text-gray-900 mb-2">پشتیبانی ۲۴/۷</h4>
+                    <p class="text-gray-600 text-sm">تیم پشتیبانی متخصص همیشه در کنار شماست</p>
+                </div>
+                <div>
+                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                        </svg>
+                    </div>
+                    <h4 class="font-bold text-gray-900 mb-2">دسترسی دائمی</h4>
+                    <p class="text-gray-600 text-sm">سیستم همیشه در دسترس و پایدار برای خدمات‌رسانی مداوم</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+const route = useRoute()
 
-const isAnnual = ref(false);
-const expandedPlans = ref([]); // لیست پلن‌هایی که ویژگی‌های کاملشان نمایش داده می‌شود
-const test = ref(true);
+definePageMeta({
+    layout: 'blank',
+})
 
-const discountedPrice = (price) => Math.round(price * 0.7);
+const { public: { appUrl } } = useRuntimeConfig();
 
-const handlePlanAction = (planName) => {
-    if (planName === 'سازمانی') {
-        window.open('tel:+982100000000', '_self');
-    } else {
-        console.log("خرید پلن", planName);
-    }
-};
+const { $freeApi } = useNuxtApp()
+const plans = ref([])
+const showAllPlans = ref(false)
+const expandedPlans = ref({})
 
-const getPlanCardClass = (planName) => {
-    switch (planName) {
-        case 'استاندارد':
-            return 'border-2 border-yellow-400 shadow-lg scale-105';
-        case 'سازمانی':
-            return 'border-2 border-purple-500 shadow-xl';
-        default:
-            return 'border border-gray-200';
-    }
-};
+const selectedPeriod = ref('monthly') // monthly, quarterly, annually
 
-const getButtonClass = (planName) => {
-    switch (planName) {
-        case 'استاندارد':
-            return 'bg-gradient-to-r from-yellow-400 to-orange-500 text-white hover:from-yellow-500 hover:to-orange-600 shadow-lg';
-        case 'سازمانی':
-            return 'bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700 shadow-lg';
-        default:
-            return 'bg-blue-600 text-white hover:bg-blue-700';
-    }
-};
+// تعریف انواع پلن‌های پرداختی
+const billingPeriods = [
+    { label: 'ماهانه', value: 'monthly' },
+    { label: 'سه‌ماهه', value: 'quarterly' },
+    { label: 'سالانه', value: 'annually' }
+]
 
-// بررسی آیا پلن در حالت توسعه یافته است
-const isPlanExpanded = (planName) => {
-    return expandedPlans.value.includes(planName);
-};
-
-// نمایش ویژگی‌های قابل مشاهده برای هر پلن
-const getVisibleFeatures = (plan) => {
-    if (isPlanExpanded(plan.name)) {
-        return plan.features;
-    }
-    return plan.features.slice(0, 5); // فقط ۵ ویژگی اول نمایش داده می‌شود
-};
-
-// نمایش/مخفی کردن ویژگی‌های بیشتر
-const toggleShowMore = (planName) => {
-    const index = expandedPlans.value.indexOf(planName);
-    if (index > -1) {
-        expandedPlans.value.splice(index, 1);
-    } else {
-        expandedPlans.value.push(planName);
-    }
-};
-
-const plans = [
-    {
-        id: 1,
-        name: "پایه",
-        description: "برای شروع با ابزارهای مدیریت کسب‌وکار",
-        price: 680000,
-        button: "شروع کن",
-        features: [
-            "تعداد کاربران: ۳",
-            "اپلیکیشن تکنسین",
-            "ثبت پذیرش",
-            "پرداخت آنلاین و نقدی",
-            "ثبت فاکتور",
-            "خدمات دهی بر اساس محدوده جغرافیایی",
-            "مالی و تسویه حساب",
-            "سیستم ثبت ایرادات هوشمند",
-            "ارسال پیامک",
-            "ارسال نوتیفیکیشن",
-            "باشگاه مشتریان",
-            "مدیریت خدمات",
-            "ارتباط با مشتریان",
-            "تیکتینگ",
-            "مدیریت دلایل لغو",
-            "امکان تعریف درصد اجرت برای هر تکنسین",
-            "تعریف مبلغ ضمانت برای تکنسین",
-            "سیستم کیف پول",
-            "تعریف قطعه برای هر خدمت",
-            "محاسبه قیمت ها در اپ تکنسین",
-            "امکان تعریف پذیرش طلایی و بازگشتی",
-            "سیستم گارانتی",
-            "مرخصی تکنسین ها",
-            "امکان ثبت سرنخ",
-            "تعریف انواع محدودیت ها برای تکنسین",
-        ],
-    },
-    {
-        id: 2,
-        name: "استاندارد",
-        description: "پیشنهاد ویژه ما برای شروع کار با تمام امکانات ضروری",
-        price: 890000,
-        button: "پرداخت و ویژه",
-        features: [
-            "تعداد کاربران: ۱۲",
-            "تمام امکانات پایه",
-            "ویجت رزرو آنلاین",
-            "سیستم امتیاز دهی تکنسین ها",
-            "مدیریت پیشرفته نظرات",
-            "کتابچه قیمت تصویری",
-            "ردیابی GPS کارمندان",
-            "ویجت استخدام",
-            "پشتیبانی اولویت دار",
-            "آموزش رایگان",
-        ],
-    },
-    {
-        id: 3,
-        name: "پیشرفته",
-        description: "برای کسب‌وکارهای بزرگ‌تر با پشتیبانی ویژه",
-        price: 1250000,
-        button: "شروع کن",
-        features: [
-            "تعداد کاربران: ۲۰",
-            "تمام امکانات استاندارد",
-            "داشبورد آنالیز کسب و کار",
-            "کاربران اضافی با هزینه جداگانه",
-            "چت بات هوش مصنوعی برای وبسایت شما",
-            "پشتیبانی تلفنی ویژه",
-            "وبسایت رایگان در پلن یکساله",
-            "سی آر ام فروش",
-            "آنالیز پیشرفته عملکرد",
-        ],
-    },
-    {
-        id: 4,
-        name: "سازمانی",
-        description: "راه‌حل اختصاصی برای سازمان‌ها و شرکت‌های بزرگ با قابلیت‌های سفارشی",
-        price: 0,
-        button: "تماس با ما",
-        features: [
-            "سیستم کاملاً سفارشی‌سازی شده",
-            "پشتیبانی ۲۴/۷ اختصاصی",
-            "ادغام با نرم‌افزارهای موجود",
-            "سرورهای اختصاصی",
-            "تعداد کاربران نامحدود",
-            "امنیت پیشرفته سازمانی",
-            "گزارش‌های تحلیلی سفارشی",
-            "آموزش تیم اختصاصی",
-            "قابلیت توسعه بر اساس نیازهای شما",
-            "پشتیبانی از چندین شعبه",
-        ],
-    },
-];
-
-const allOptions = [
-    {
-        name: "ویژگی شماره ۱",
-    }
-];
+// ویژگی‌های پلن آزمایشی
+const trialOptions = ref([
+    'مدیریت حداکثر ۵ کاربر',
+    'مدیریت ۳ پروژه خدماتی',
+    'سیستم رزرو نوبت آنلاین',
+    'مدیریت مالی و صورتحساب',
+    'گزارش‌گیری پایه',
+    'پشتیبانی تلفنی و ایمیلی',
+    'دسترسی به اپلیکیشن موبایل'
+])
 
 onMounted(() => {
-    window.addEventListener("scroll", () => {
-        const scrollY = window.scrollY || document.documentElement.scrollTop;
-        const el = document.querySelector("#tableheader");
-        if (el) {
-            const isDesktop = window.innerWidth > 768;
-            if (isDesktop && scrollY > 715) {
-                el.style.position = "fixed";
-                el.style.top = "55px";
-                el.style.left = '2%';
-                el.style.right = '2%';
-                el.style.width = '96%';
-                el.style.zIndex = "10";
-            } else if (isDesktop) {
-                el.style.position = "sticky";
-                el.style.top = "0px";
-                el.style.left = "";
-                el.style.width = "";
-            }
-        }
-    });
-});
+    getPricing()
+})
+
+const getPricing = async () => {
+    const { data } = await $freeApi.get('base/v1/auth/plans')
+    plans.value = data
+}
+
+// فیلتر کردن پلن‌های پولی (غیر آزمایشی)
+const paidPlans = computed(() => {
+    return plans.value.filter(plan => !plan.istrial)
+})
+
+// نمایش پلن‌های پولی
+const visiblePaidPlans = computed(() => {
+    return showAllPlans.value ? paidPlans.value : paidPlans.value.slice(0, 3)
+})
+
+// نمایش ویژگی‌های هر پلن
+const visiblePlanOptions = (plan) => {
+    const options = getPlanOptions(plan)
+    return expandedPlans.value[plan.pk_plan] ? options : options.slice(0, 5)
+}
+
+// تغییر وضعیت نمایش ویژگی‌ها
+const toggleShowAllOptions = (planId) => {
+    expandedPlans.value[planId] = !expandedPlans.value[planId]
+}
+
+// محاسبه قیمت بر اساس نوع پلن و تبدیل به تومان
+const getPlanPrice = (plan) => {
+    if (!plan.price) return 0
+
+    const prices = JSON.parse(plan.price)
+    let price = 0
+    switch (selectedPeriod.value) {
+        case 'monthly':
+            price = prices[0]
+            break
+        case 'quarterly':
+            price = prices[1]
+            break
+        case 'annually':
+            price = prices[2]
+            break
+        default:
+            price = prices[0]
+    }
+
+    // تبدیل از ریال به تومان (تقسیم بر 10)
+    return Math.round(price / 10)
+}
+
+// محاسبه قیمت اصلی (بدون تخفیف) و تبدیل به تومان
+const getOriginalPrice = (plan) => {
+    if (!plan.price) return 0
+
+    const prices = JSON.parse(plan.price)
+    // قیمت اصلی همیشه ماهانه است
+    const originalPrice = prices[0] * getPeriodMultiplier()
+
+    // تبدیل از ریال به تومان (تقسیم بر 10)
+    return Math.round(originalPrice / 10)
+}
+
+// ضریب دوره پرداخت
+const getPeriodMultiplier = () => {
+    switch (selectedPeriod.value) {
+        case 'monthly':
+            return 1
+        case 'quarterly':
+            return 3
+        case 'annually':
+            return 12
+        default:
+            return 1
+    }
+}
+
+// بررسی وجود تخفیف
+const hasDiscount = (plan) => {
+    return getDiscount(plan) > 0
+}
+
+// محاسبه درصد تخفیف
+const getDiscount = (plan) => {
+    if (selectedPeriod.value === 'quarterly' && plan.seasonaldiscount) {
+        return plan.seasonaldiscount
+    } else if (selectedPeriod.value === 'annually' && plan.annuallydiscount) {
+        return plan.annuallydiscount
+    }
+    return 0
+}
+
+// فرمت کردن قیمت
+const formatPrice = (price) => {
+    return new Intl.NumberFormat('fa-IR').format(price)
+}
+
+// دریافت ویژگی‌های پلن
+const getPlanOptions = (plan) => {
+    if (!plan.options) return []
+    return JSON.parse(plan.options)
+}
+
+// ایجاد لینک برای پلن آزمایشی
+const getTrialPlanLink = () => {
+    const trialPlan = plans.value.find(plan => plan.istrial)
+    if (trialPlan) {
+        return `/register?plan_id=${trialPlan.pk_plan}&period=trial`
+    }
+    return '/register'
+}
+
+// ایجاد لینک برای پلن‌های پولی
+const getPlanLink = (plan) => {
+
+    return appUrl + `register?i=${plan.pk_plan}&p=${selectedPeriod.value}`
+}
 </script>
-
-<style scoped>
-table th,
-table td {
-    border-left: 1px solid #e5e7eb;
-}
-
-table th:last-child,
-table td:last-child {
-    border-left: none;
-}
-
-/* افکت‌های اضافی برای تعامل بهتر */
-.hover-lift {
-    transition: all 0.3s ease;
-}
-
-.hover-lift:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
-/* انیمیشن برای نمایش ویژگی‌ها */
-.fade-in {
-    animation: fadeIn 0.3s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-</style>

@@ -41,7 +41,7 @@
             </div>
 
             <div class="flex-1 text-right">
-              <h3 class="text-lg font-semibold mb-1">{{ f.title }}</h3>
+              <h3 class="text-lg  mb-1">{{ f.title }}</h3>
               <p class="text-indigo-100/80 text-sm leading-relaxed">{{ f.desc }}</p>
 
               <div class="mt-4 flex justify-end">
@@ -68,13 +68,13 @@
       <div
         class="mt-12 rounded-2xl p-6 bg-gradient-to-r from-[#0b2541]/40 to-[#08263a]/30 border border-white/6 flex flex-col lg:flex-row items-center justify-between gap-4 relative z-10">
         <div class="text-right">
-          <h4 class="text-xl font-bold">همین امروز شروع کنید</h4>
+          <h4 class="text-xl ">همین امروز شروع کنید</h4>
           <p class="text-indigo-200/80 text-sm mt-1">اشتراک خود را فعال کنید و امکانات پایه را بلافاصله دریافت کنید —
             راه‌اندازی سریع و پشتیبانی فارسی.</p>
         </div>
         <div class="flex items-center gap-3">
           <a href="/signup"
-            class="px-5 py-3 rounded-full bg-indigo-500 hover:bg-indigo-400 text-white font-semibold shadow-lg transition-transform transform hover:scale-105">شروع
+            class="px-5 py-3 rounded-full bg-indigo-500 hover:bg-indigo-400 text-white  shadow-lg transition-transform transform hover:scale-105">شروع
             رایگان</a>
           <a href="/pricing" class="px-4 py-2 rounded-full border border-white/10 text-indigo-200">تعرفه‌ها</a>
         </div>

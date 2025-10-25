@@ -16,7 +16,7 @@
       </div>
 
       <div class="relative z-10">
-        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">چرا شهابان</h2>
+        <h2 class="text-4xl md:text-5xl  mb-6 text-white">چرا شهابان</h2>
         <p class="text-blue-100 text-xl mb-12 max-w-3xl mx-auto">
           بیش از ۱۲۰٬۰۰۰ متخصص خدمات میدانی به شهابان اعتماد کرده‌اند — سریع و بدون دردسر شروع کنید.
         </p>
@@ -24,7 +24,7 @@
         <!-- دکمه‌های تب -->
         <div class="flex flex-wrap justify-center gap-4 mb-16">
           <button v-for="tab in tabs" :key="tab.key" @click="activeTab = tab.key" :class="[
-            'px-8 py-3 rounded-full font-bold border-2 transition-all duration-300 ease-in-out transform hover:scale-105',
+            'px-8 py-3 rounded-full  border-2 transition-all duration-300 ease-in-out transform hover:scale-105',
             activeTab === tab.key
               ? 'bg-yellow-400 text-gray-900 border-yellow-400 shadow-2xl scale-105'
               : 'bg-white/10 text-white border-white/30 hover:bg-white/20 backdrop-blur-sm'
@@ -42,7 +42,7 @@
               <div
                 class="text-yellow-300 w-16 h-16 mb-6 mx-auto md:mx-0 bg-yellow-400/20 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform"
                 v-html="item.icon"></div>
-              <h3 class="text-xl font-bold mb-3 text-white text-center md:text-right">{{ item.title }}</h3>
+              <h3 class="text-xl  mb-3 text-white text-center md:text-right">{{ item.title }}</h3>
               <p class="text-blue-100 text-base leading-relaxed text-center md:text-right">{{ item.text }}</p>
             </div>
           </div>
@@ -54,7 +54,7 @@
               <div
                 class="text-yellow-300 w-16 h-16 mb-6 mx-auto md:mx-0 bg-yellow-400/20 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform"
                 v-html="item.icon"></div>
-              <h3 class="text-xl font-bold mb-3 text-white text-center md:text-right">{{ item.title }}</h3>
+              <h3 class="text-xl  mb-3 text-white text-center md:text-right">{{ item.title }}</h3>
               <p class="text-blue-100 text-base leading-relaxed text-center md:text-right">{{ item.text }}</p>
             </div>
           </div>
@@ -69,10 +69,10 @@
               <div
                 class="text-white w-16 h-16 mb-6 mx-auto md:mx-0 bg-white/20 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform relative z-10"
                 v-html="item.icon"></div>
-              <h3 class="text-xl font-bold mb-3 text-white text-center md:text-right relative z-10">{{ item.title }}
+              <h3 class="text-xl  mb-3 text-white text-center md:text-right relative z-10">{{ item.title }}
               </h3>
               <p class="text-purple-100 text-base leading-relaxed text-center md:text-right relative z-10">{{ item.text
-                }}</p>
+              }}</p>
               <div class="absolute bottom-3 left-3 w-2 h-2 bg-green-400 rounded-full animate-ping"></div>
             </div>
           </div>

@@ -14,7 +14,7 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-16">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-12">
                 <!-- Brand Section -->
-                <div class="lg:col-span-4 space-y-6">
+                <div class="lg:col-span-5 space-y-6">
                     <NuxtLink to="/" class="inline-flex items-center gap-3 group" aria-label="Go to homepage">
                         <div class="relative">
                             <svg width="48" height="48" viewBox="0 0 48 48" fill="none"
@@ -32,31 +32,28 @@
                             </svg>
                             <div class="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
                         </div>
-                        <span class="text-2xl font-bold leading-tight">شهابان</span>
+                        <span class="text-2xl  leading-tight">شهابان</span>
                     </NuxtLink>
                     <p class="text-gray-300 leading-relaxed text-sm">
-                        ابزار ابری مدیریت عملیات میدانی برای کسب‌وکارهای خدماتی — زمان‌بندی، صورتحساب و پیگیری مشتریان
-                        همه در یک‌جا.
+                        بهترین نرم افزار مدیریت کسب و کار های خدمات در محل - مدیریت خدماتی — زمان‌بندی، صورتحساب و
+                        پیگیری مشتریان
                     </p>
                     <!-- Social Media -->
                     <div class="space-y-3">
-                        <h4 class="text-indigo-200 font-semibold text-sm">مجوز ها</h4>
-                        <div class="flex gap-3">
-                            <a referrerpolicy='origin' target='_blank'
-                                href='https://trustseal.enamad.ir/?id=662444&Code=88YSWnyWlh82RyEZokVp8dBTHNzm0JUd'><img
-                                    referrerpolicy='origin'
-                                    src='https://trustseal.enamad.ir/logo.aspx?id=662444&Code=88YSWnyWlh82RyEZokVp8dBTHNzm0JUd'
-                                    alt='' style='cursor:pointer' code='88YSWnyWlh82RyEZokVp8dBTHNzm0JUd'></a>
-                        </div>
+                        <h4 class="text-indigo-200  text-sm">مجوز ها</h4>
+                        <a href="https://trustseal.enamad.ir/?id=662444&Code=88YSWnyWlh82RyEZokVp8dBTHNzm0JUd"
+                            class="flex gap-3">
+                            <img src="/images/enamad.png" />
+                        </a>
                     </div>
                 </div>
 
                 <!-- Contact Info -->
                 <div class="lg:col-span-4 space-y-5">
-                    <h3 class="text-indigo-200 mb-6 font-bold text-lg">تماس با ما</h3>
+                    <h3 class="text-indigo-200 mb-6  text-lg">تماس با ما</h3>
 
                     <!-- Phone -->
-                    <a href="tel:+982188888888"
+                    <a href="tel:02128427044"
                         class="flex items-start gap-3 group hover:translate-x-2 transition-transform duration-300">
                         <div
                             class="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-lg">
@@ -68,7 +65,7 @@
                         <div class="text-right">
                             <p class="text-xs text-gray-400 mb-1">تلفن تماس</p>
                             <p class="text-white font-medium group-hover:text-blue-300 transition-colors" dir="ltr">
-                                021-8888-8888</p>
+                                021-28427044</p>
                         </div>
                     </a>
 
@@ -90,7 +87,7 @@
                     </a>
 
                     <!-- WhatsApp -->
-                    <a href="https://wa.me/989123456789" target="_blank"
+                    <a href="https://wa.me/+989021459616" target="_blank"
                         class="flex items-start gap-3 group hover:translate-x-2 transition-transform duration-300">
                         <div
                             class="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-lg">
@@ -102,7 +99,7 @@
                         <div class="text-right">
                             <p class="text-xs text-gray-400 mb-1">واتساپ</p>
                             <p class="text-white font-medium group-hover:text-green-300 transition-colors" dir="ltr">
-                                0912-345-6789</p>
+                                09021459616</p>
                         </div>
                     </a>
 
@@ -119,12 +116,12 @@
                         </div>
                         <div class="text-right">
                             <p class="text-xs text-gray-400 mb-1">آدرس دفتر مرکزی</p>
-                            <p class="text-white font-medium leading-relaxed">تهران، خیابان ولیعصر، پلاک ۱۲۳۴</p>
+                            <p class="text-white font-medium leading-relaxed">تهران -خیابان هنگام - ملک لو- پلاک ۱۱</p>
                         </div>
                     </div>
 
                     <!-- Location Link -->
-                    <a href="https://maps.google.com/?q=35.6892,51.3890" target="_blank"
+                    <a href="https://maps.app.goo.gl/b94GPKbbz18DbV1s6" target="_blank"
                         class="inline-flex items-center gap-2 text-sm text-blue-300 hover:text-blue-200 transition-colors group mt-2">
                         <svg class="w-4 h-4 group-hover:scale-110 transition-transform" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
@@ -139,7 +136,7 @@
                 <div class="lg:col-span-2">
                     <nav aria-label="Product" class="space-y-6">
                         <div>
-                            <h3 class="text-indigo-200 mb-4 font-bold text-lg">محصول</h3>
+                            <h3 class="text-indigo-200 mb-4  text-lg">محصول</h3>
                             <ul class="space-y-3">
                                 <li>
                                     <NuxtLink to="/"
@@ -158,7 +155,7 @@
                                     </NuxtLink>
                                 </li>
                                 <li>
-                                    <NuxtLink to="/demo"
+                                    <NuxtLink to="/pricing"
                                         class="text-gray-300 hover:text-white transition-colors flex items-center gap-2 group">
                                         <span
                                             class="w-1.5 h-1.5 bg-blue-400 rounded-full group-hover:scale-150 transition-transform"></span>
@@ -168,95 +165,20 @@
                             </ul>
                         </div>
 
-                        <div>
-                            <h3 class="text-indigo-200 mb-4 font-bold text-lg">شرکت</h3>
-                            <ul class="space-y-3">
-                                <li>
-                                    <NuxtLink to="/about"
-                                        class="text-gray-300 hover:text-white transition-colors flex items-center gap-2 group">
-                                        <span
-                                            class="w-1.5 h-1.5 bg-purple-400 rounded-full group-hover:scale-150 transition-transform"></span>
-                                        درباره ما
-                                    </NuxtLink>
-                                </li>
-                                <li>
-                                    <NuxtLink to="/terms"
-                                        class="text-gray-300 hover:text-white transition-colors flex items-center gap-2 group">
-                                        <span
-                                            class="w-1.5 h-1.5 bg-purple-400 rounded-full group-hover:scale-150 transition-transform"></span>
-                                        قوانین و مقررات
-                                    </NuxtLink>
-                                </li>
-                                <li>
-                                    <NuxtLink to="/privacy"
-                                        class="text-gray-300 hover:text-white transition-colors flex items-center gap-2 group">
-                                        <span
-                                            class="w-1.5 h-1.5 bg-purple-400 rounded-full group-hover:scale-150 transition-transform"></span>
-                                        حریم خصوصی
-                                    </NuxtLink>
-                                </li>
-                                <li>
-                                    <NuxtLink to="/contact"
-                                        class="text-gray-300 hover:text-white transition-colors flex items-center gap-2 group">
-                                        <span
-                                            class="w-1.5 h-1.5 bg-purple-400 rounded-full group-hover:scale-150 transition-transform"></span>
-                                        تماس با ما
-                                    </NuxtLink>
-                                </li>
-                            </ul>
-                        </div>
                     </nav>
                 </div>
 
-                <!-- Resources -->
-                <div class="lg:col-span-2">
-                    <nav aria-label="Resources" class="space-y-6">
-                        <div>
-                            <h3 class="text-indigo-200 mb-4 font-bold text-lg">منابع</h3>
-                            <ul class="space-y-3">
-                                <li>
-                                    <NuxtLink to="/blog"
-                                        class="text-gray-300 hover:text-white transition-colors flex items-center gap-2 group">
-                                        <span
-                                            class="w-1.5 h-1.5 bg-green-400 rounded-full group-hover:scale-150 transition-transform"></span>
-                                        بلاگ
-                                    </NuxtLink>
-                                </li>
-                                <li>
-                                    <NuxtLink to="/help"
-                                        class="text-gray-300 hover:text-white transition-colors flex items-center gap-2 group">
-                                        <span
-                                            class="w-1.5 h-1.5 bg-green-400 rounded-full group-hover:scale-150 transition-transform"></span>
-                                        مرکز پشتیبانی
-                                    </NuxtLink>
-                                </li>
-                                <li>
-                                    <NuxtLink to="/docs"
-                                        class="text-gray-300 hover:text-white transition-colors flex items-center gap-2 group">
-                                        <span
-                                            class="w-1.5 h-1.5 bg-green-400 rounded-full group-hover:scale-150 transition-transform"></span>
-                                        راهنمای استفاده
-                                    </NuxtLink>
-                                </li>
-                                <li>
-                                    <NuxtLink to="/api"
-                                        class="text-gray-300 hover:text-white transition-colors flex items-center gap-2 group">
-                                        <span
-                                            class="w-1.5 h-1.5 bg-green-400 rounded-full group-hover:scale-150 transition-transform"></span>
-                                        API مستندات
-                                    </NuxtLink>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
             </div>
 
             <!-- Bottom Bar -->
             <div class="mt-12 pt-8 border-t border-indigo-900/40">
                 <div class="flex flex-col md:flex-row items-center justify-between gap-6">
                     <p class="text-sm text-gray-400 text-center md:text-right">
-                        © {{ new Date().getFullYear() }} شهابان. تمامی حقوق محفوظ است.
+                        شهابان. تمامی حقوق محفوظ است.
+
+                        {{ new Date().getFullYear() }}
+                        ©
+
                     </p>
 
                     <!-- Trust Badges -->
