@@ -119,8 +119,6 @@ import { useLoadingStore } from '@/stores/loading'
 
 //const toast = useToast()
 
-definePageMeta({ layout: 'blank' })
-
 const { $freeApi, $updateAuthHeader } = useNuxtApp()
 const router = useRouter()
 const loadingStore = useLoadingStore()

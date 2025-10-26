@@ -27,9 +27,4 @@ definePageMeta({
         }
     ]
 })
-
-
-definePageMeta({
-    layout: 'blank',
-})
 </script>

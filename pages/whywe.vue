@@ -7,9 +7,6 @@
 <script setup>
 definePageMeta({
     layout: 'blank',
-})
-definePageMeta({
-    layout: 'blank',
     title: 'چرا شهابان',
     meta: [
         {
