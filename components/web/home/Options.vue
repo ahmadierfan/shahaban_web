@@ -4,9 +4,9 @@
             <!-- عنوان اصلی -->
             <transition name="fade-up" appear>
                 <div class="text-center mb-16">
-                    <h1 class="text-4xl text-gray-900 mb-4 transition-all duration-700">
+                    <h2 class="text-4xl text-gray-900 mb-4 transition-all duration-700">
                         فقط لیست کارها رو بیشتر نکن. به فکر توسعه باش.
-                    </h1>
+                    </h2>
                     <p
                         class="text-xl text-gray-600 max-w-3xl mx-auto opacity-80 transition-opacity duration-700 delay-200">
                         با ابزارهای قدرتمند ما، مدیریت کسب‌وکارتان را ساده کنید و روی رشد

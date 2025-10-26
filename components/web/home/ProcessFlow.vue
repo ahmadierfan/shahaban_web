@@ -15,11 +15,11 @@
         <div class="max-w-6xl mx-auto relative z-10">
             <!-- Header -->
             <div class="text-center mb-12">
-                <h1 class="text-4xl md:text-6xl font-black text-white mb-4 animate-fade-in">
+                <h2 class="text-4xl md:text-6xl font-black text-white mb-4 animate-fade-in">
                     راه‌اندازی <span
                         class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-green-400">نرم‌افزار
                         ابری</span>
-                </h1>
+                </h2>
                 <p class="text-xl text-blue-200 max-w-2xl mx-auto">
                     فقط در ۵ مرحله ساده، کسب‌وکار خود را به دنیای ابری متصل کنید
                 </p>
