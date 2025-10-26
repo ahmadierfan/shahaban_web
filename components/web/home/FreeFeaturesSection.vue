@@ -70,12 +70,13 @@
         <div class="text-right">
           <h4 class="text-xl ">همین امروز شروع کنید</h4>
           <p class="text-indigo-200/80 text-sm mt-1">اشتراک خود را فعال کنید و امکانات پایه را بلافاصله دریافت کنید —
-            راه‌اندازی سریع و پشتیبانی فارسی.</p>
+            راه‌اندازی سریع و پشتیبانی 24 ساعته.</p>
         </div>
         <div class="flex items-center gap-3">
-          <a href="/signup"
-            class="px-5 py-3 rounded-full bg-indigo-500 hover:bg-indigo-400 text-white  shadow-lg transition-transform transform hover:scale-105">شروع
-            رایگان</a>
+          <a :href="appUrl + 'register'"
+            class="px-5 py-3 rounded-full bg-indigo-500 hover:bg-indigo-400 text-white  shadow-lg transition-transform transform hover:scale-105">
+            شروع رایگان
+          </a>
           <a href="/pricing" class="px-4 py-2 rounded-full border border-white/10 text-indigo-200">تعرفه‌ها</a>
         </div>
       </div>
@@ -85,6 +86,8 @@
 
 <script setup>
 import { ref, onMounted, nextTick } from 'vue'
+
+const { public: { appUrl } } = useRuntimeConfig();
 
 // features data (تماماً داخل کامپوننت — آیکون‌ها SVG اختصاصی)
 const features = [

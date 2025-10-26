@@ -173,30 +173,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Auto Progress Controls -->
-            <div class="text-center mt-8" v-if="activeStep < steps.length - 1">
-                <div class="inline-flex items-center gap-4 bg-black/30 backdrop-blur-sm rounded-full px-6 py-3">
-                    <button @click="toggleAutoProgress"
-                        class="flex items-center text-sm font-medium px-4 py-2 rounded-lg transition-all duration-300"
-                        :class="isAutoProgress ? 'bg-green-500/20 text-green-300' : 'bg-white/10 text-white'">
-                        <svg class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path v-if="isAutoProgress" fill-rule="evenodd"
-                                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                clip-rule="evenodd"></path>
-                            <path v-else fill-rule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                        {{ isAutoProgress ? 'توقف خودکار' : 'شروع خودکار' }}
-                    </button>
-
-                    <div class="flex items-center text-green-300" v-if="isAutoProgress && isInView">
-                        <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse ml-2"></div>
-                        <span class="text-sm">هر مرحله: ۴ ثانیه</span>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </template>

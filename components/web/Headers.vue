@@ -17,7 +17,7 @@
 
                 <!-- منوی اصلی -->
                 <nav class="hidden lg:flex items-center gap-1">
-                    <!-- منوی آبشاری صنایع -->
+                    <!-- منوی آبشاری صنایع 
                     <div class="relative">
                         <button @click="toggleDropdown('industries')"
                             class="flex items-center gap-2 px-4 py-3 text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 rounded-xl hover:bg-blue-50 group"
@@ -35,7 +35,6 @@
                             </svg>
                         </button>
 
-                        <!-- منوی آبشاری صنایع -->
                         <transition enter-active-class="transition-all duration-300 ease-out"
                             enter-from-class="opacity-0 scale-95 -translate-y-4"
                             enter-to-class="opacity-100 scale-100 translate-y-0"
@@ -86,8 +85,8 @@
                             </div>
                         </transition>
                     </div>
-
-                    <!-- منوی آبشاری راهکارها -->
+                    -->
+                    <!-- منوی آبشاری راهکارها 
                     <div class="relative">
                         <button @click="toggleDropdown('solutions')"
                             class="flex items-center gap-2 px-4 py-3 text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 rounded-xl hover:bg-blue-50 group"
@@ -105,7 +104,6 @@
                             </svg>
                         </button>
 
-                        <!-- منوی آبشاری راهکارها -->
                         <transition enter-active-class="transition-all duration-300 ease-out"
                             enter-from-class="opacity-0 scale-95 -translate-y-4"
                             enter-to-class="opacity-100 scale-100 translate-y-0"
@@ -156,8 +154,8 @@
                             </div>
                         </transition>
                     </div>
-
-                    <!-- لینک‌های ساده -->
+-->
+                    <!-- لینک‌های ساده 
                     <NuxtLink to="/pricing"
                         class="px-4 py-3 text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 rounded-xl hover:bg-blue-50"
                         :class="{ 'text-blue-600 bg-blue-50': $route.path === '/pricing' }">
@@ -168,6 +166,7 @@
                         :class="{ 'text-blue-600 bg-blue-50': $route.path === '/whywe' }">
                         چرا ما
                     </NuxtLink>
+                    -->
                 </nav>
 
                 <!-- دکمه‌های سمت چپ -->
@@ -193,25 +192,20 @@
                     </a>
 
                     <!-- دکمه همبرگر منوی موبایل -->
-                    <button @click="toggleMobileMenu"
-                        class="lg:hidden p-2.5 rounded-xl hover:bg-gray-100 transition-colors duration-300 relative z-50">
-                        <svg v-if="!isMobileMenuOpen" class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                        <svg v-else class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
+                    <div
+                        class="flex lg:hidden p-2.5 rounded-xl hover:bg-gray-100 transition-colors duration-300 relative z-50">
+                        <a :href="loginBtnRedirectTo" target="_blank"
+                            class=" md:inline-flex items-center gap-2 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-gray-900 py-2.5 px-6 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg shadow-md">
+                            <span>{{ loginBtnText }}</span>
+                        </a>
+                        <NuxtLink to="pricing"
+                            class=" md:inline-flex items-center gap-2 border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-medium py-2.5 px-4 rounded-full transition-all duration-300">
+                            <span>تعرفه ها</span>
+                        </NuxtLink>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <!-- منوی موبایل -->
-        <WebMobileMenu :is-open="isMobileMenuOpen" :industries-items="industriesItems" :solutions-items="solutionsItems"
-            :login-btn-text="loginBtnText" :login-btn-redirect-to="loginBtnRedirectTo" @close="closeMobileMenu" />
     </header>
 </template>
 
@@ -224,7 +218,7 @@ const isMobileMenuOpen = ref(false)
 
 // اطلاعات کاربر
 const loginBtnText = ref('ورود / ثبت‌نام')
-const loginBtnRedirectTo = appUrl
+const loginBtnRedirectTo = appUrl + "register"
 
 // داده‌های منوی صنایع
 const industriesItems = [
