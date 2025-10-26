@@ -139,11 +139,11 @@
                             <h3 class="text-indigo-200 mb-4  text-lg">محصول</h3>
                             <ul class="space-y-3">
                                 <li>
-                                    <NuxtLink to="/"
+                                    <NuxtLink to="/whywe"
                                         class="text-gray-300 hover:text-white transition-colors flex items-center gap-2 group">
                                         <span
                                             class="w-1.5 h-1.5 bg-blue-400 rounded-full group-hover:scale-150 transition-transform"></span>
-                                        ویژگی‌ها
+                                        چرا ما
                                     </NuxtLink>
                                 </li>
                                 <li>
@@ -159,7 +159,7 @@
                                         class="text-gray-300 hover:text-white transition-colors flex items-center gap-2 group">
                                         <span
                                             class="w-1.5 h-1.5 bg-blue-400 rounded-full group-hover:scale-150 transition-transform"></span>
-                                        درخواست دمو
+                                        استفاده رایگان
                                     </NuxtLink>
                                 </li>
                             </ul>
