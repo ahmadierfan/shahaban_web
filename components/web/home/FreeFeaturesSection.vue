@@ -14,7 +14,7 @@
     <div class="relative max-w-7xl mx-auto">
       <!-- Header -->
       <header class="text-right mb-12 max-w-3xl ml-auto relative z-10">
-        <h2 class="text-3xl lg:text-4xl font-extrabold tracking-tight">امکانات رایگان بعد از خرید اشتراک</h2>
+        <h2 class="text-3xl lg:text-4xl  tracking-tight">امکانات رایگان بعد از خرید اشتراک</h2>
         <p class="mt-3 text-indigo-200/80 leading-relaxed">پکیج ابزارهای حرفه‌ای برای مدیریت خدمات میدانی — فعال‌سازی
           سریع، تجربهٔ بومی و پشتیبانی فارسی. همهٔ امکانات پایه پس از خرید اشتراک فعال می‌شوند.</p>
       </header>

@@ -42,7 +42,7 @@
                                 <div class="space-y-6">
                                     <!-- عنوان فرم -->
                                     <div class="text-center space-y-2">
-                                        <h3 class="text-2xl font-bold text-white">شروع رایگان ۳ روزه</h3>
+                                        <h3 class="text-2xl text-white">شروع رایگان ۳ روزه</h3>
                                         <p class="text-yellow-300 text-lg animate-pulse-slow">
                                             اولین نرم‌افزار اختصاصی کسب‌وکار شما
                                         </p>
@@ -79,7 +79,7 @@
                                         <div
                                             class="absolute inset-0 bg-gradient-to-r from-yellow-300 to-yellow-400 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                                         </div>
-                                        <span class="relative z-10 font-bold">شروع رایگان</span>
+                                        <span class="relative z-10 ">شروع رایگان</span>
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                             class="relative z-10 h-5 w-5 transform group-hover:translate-x-1 transition-transform"
                                             viewBox="0 0 20 20" fill="currentColor">

@@ -27,8 +27,7 @@
         <div class="hidden md:flex w-full md:w-1/2 items-center justify-center relative">
             <div
                 class="text-center text-gray-800 z-10 py-20 px-24 animate-fade-in-long bg-white shadow-2xl rounded-3xl">
-                <h2
-                    class="text-2xl font-extrabold mb-6 bg-gradient-to-r from-teal-500 to-pink-500 bg-clip-text text-transparent">
+                <h2 class="text-2xl  mb-6 bg-gradient-to-r from-teal-500 to-pink-500 bg-clip-text text-transparent">
                     هوش مصنوعی کنار شما
                     <br />
                     در تمام مراحل
@@ -101,6 +100,19 @@
     </div>
 </template>
 <script setup>
+definePageMeta({
+    layout: 'blank',
+    title: 'شهابان صفحه ورود',
+    meta: [
+        {
+            name: 'description',
+            content:
+                'صفحه ورود اپلیکیشن شهابان'
+        },
+    ]
+})
+
+
 import { ref, watch, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import { useLoadingStore } from '@/stores/loading'

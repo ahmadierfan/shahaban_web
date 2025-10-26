@@ -10,7 +10,7 @@
                         d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
             </div>
-            <h1 class="text-4xl font-bold text-gray-900 mb-4">
+            <h1 class="text-4xl text-gray-900 mb-4">
                 پلن‌های <span
                     class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">شهابان</span>
             </h1>
@@ -47,14 +47,14 @@
                     <!-- تخفیف ویژه -->
                     <div v-if="getDiscount(plan)" class="absolute -top-3 right-6">
                         <div
-                            class="bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                            class="bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs px-3 py-1 rounded-full shadow-lg">
                             {{ getDiscount(plan) }}% تخفیف
                         </div>
                     </div>
 
                     <div class="flex items-center justify-between mb-6">
                         <div>
-                            <h3 class="text-2xl font-bold text-gray-900">{{ plan.plan }}</h3>
+                            <h3 class="text-2xl text-gray-900">{{ plan.plan }}</h3>
                             <p class="text-blue-600 font-medium mt-1">{{ plan.subtitle }}</p>
                         </div>
                         <div class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center">
@@ -66,7 +66,7 @@
                     </div>
 
                     <div class="mb-6">
-                        <div class="text-3xl font-bold text-gray-900 mb-2">
+                        <div class="text-3xl text-gray-900 mb-2">
                             {{ getPlanPrice(plan) }}
                             <span class="text-lg text-gray-600" v-if="getPlanPrice(plan) != 'رایگان'"> تومان</span>
                         </div>
@@ -149,7 +149,7 @@
         <div class="bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl p-8 shadow-xl mb-16 max-w-6xl mx-auto">
             <div class="flex flex-col md:flex-row items-center justify-between">
                 <div class="text-white text-center md:text-right mb-6 md:mb-0 md:mr-8">
-                    <h3 class="text-2xl font-bold mb-3">نیاز خاصی دارید؟</h3>
+                    <h3 class="text-2xl mb-3">نیاز خاصی دارید؟</h3>
                     <p class="text-blue-100 text-lg">
                         پلن سفارشی متناسب با نیازهای کسب‌وکار خدماتی شما طراحی می‌کنیم
                     </p>
@@ -177,7 +177,7 @@
                                 d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                         </svg>
                     </div>
-                    <h4 class="font-bold text-gray-900 mb-2">امنیت اطلاعات</h4>
+                    <h4 class="text-gray-900 mb-2">امنیت اطلاعات</h4>
                     <p class="text-gray-600 text-sm">اطلاعات کسب‌وکار شما با بالاترین استانداردهای امنیتی محافظت می‌شود
                     </p>
                 </div>
@@ -188,7 +188,7 @@
                                 d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                     </div>
-                    <h4 class="font-bold text-gray-900 mb-2">پشتیبانی ۲۴/۷</h4>
+                    <h4 class="text-gray-900 mb-2">پشتیبانی ۲۴/۷</h4>
                     <p class="text-gray-600 text-sm">تیم پشتیبانی متخصص همیشه در کنار شماست</p>
                 </div>
                 <div>
@@ -198,7 +198,7 @@
                                 d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                         </svg>
                     </div>
-                    <h4 class="font-bold text-gray-900 mb-2">دسترسی دائمی</h4>
+                    <h4 class="text-gray-900 mb-2">دسترسی دائمی</h4>
                     <p class="text-gray-600 text-sm">سیستم همیشه در دسترس و پایدار برای خدمات‌رسانی مداوم</p>
                 </div>
             </div>

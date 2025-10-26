@@ -8,4 +8,16 @@
 definePageMeta({
     layout: 'blank',
 })
+definePageMeta({
+    layout: 'blank',
+    title: 'چرا شهابان',
+    meta: [
+        {
+            name: 'description',
+            content:
+                'شهابان برای کسب و کار ها خدماتی چه کار می کنه؟'
+        },
+    ]
+})
+
 </script>

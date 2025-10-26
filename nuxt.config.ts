@@ -26,7 +26,12 @@ export default defineNuxtConfig({
                 lang: 'fa',
                 dir: 'rtl',
             },
-            title: 'شهابان'
+            meta: [
+                { property: 'og:title', content: 'نرم‌افزار مدیریت کسب و کار های خدماتی' },
+                { property: 'og:description', content: 'بهترین  برای کسب‌وکارهای خدماتی در ایران' },
+                { property: 'og:type', content: 'website' },
+                { property: 'og:url', content: 'https://shahaban.com' },
+            ]
         },
     },
 
