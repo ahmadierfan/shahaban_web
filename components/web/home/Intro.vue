@@ -42,7 +42,7 @@
                                 <div class="space-y-6">
                                     <!-- عنوان فرم -->
                                     <div class="text-center space-y-2">
-                                        <h3 class="text-2xl text-white">شروع رایگان ۳ روزه</h3>
+                                        <h3 class="text-2xl text-white">شروع رایگان ۱۵ روزه</h3>
                                         <p class="text-yellow-300 text-lg animate-pulse-slow">
                                             اولین نرم‌افزار اتصاصی کسب‌وکار شما
                                         </p>
@@ -97,7 +97,7 @@
                                         </p>
                                         <p class="text-blue-200 text-sm leading-relaxed">
                                             • ثبت نام کمتر از ۲ دقیقه زمان می‌برد<br>
-                                            • امکان تست تمامی امکانات به مدت ۳ روز
+                                            • امکان تست تمامی امکانات به مدت ۱۵ روز
                                         </p>
                                     </div>
                                 </div>
