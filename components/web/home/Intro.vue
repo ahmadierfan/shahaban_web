@@ -44,7 +44,7 @@
                                     <div class="text-center space-y-2">
                                         <h3 class="text-2xl text-white">شروع رایگان ۱۵ روزه</h3>
                                         <p class="text-yellow-300 text-lg animate-pulse-slow">
-                                            اولین نرم‌افزار اتصاصی کسب‌وکار شما
+                                            اولین نرم‌افزار اختصاصی کسب‌وکار های خدماتی
                                         </p>
                                     </div>
 
