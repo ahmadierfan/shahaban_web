@@ -1,6 +1,8 @@
 <template>
     <main class="pt-16 overflow-hidden" dir="rtl">
         <!-- هدر -->
+        <WebHomeLoadingScreen v-if="isLoading" />
+
         <section
             class="relative bg-gradient-to-br from-blue-900 via-blue-700 to-blue-500 text-white overflow-hidden min-h-screen flex items-center">
             <div class="absolute inset-0 overflow-hidden">
@@ -207,6 +209,7 @@ import { ref, computed } from 'vue'
 const phone = ref('')
 const businessName = ref('')
 const submitted = ref(false)
+const isLoading = ref(false)
 
 const phoneValid = computed(() => {
     const re = /^09\d{9}$/
@@ -218,8 +221,11 @@ const businessNameValid = computed(() => {
 })
 
 function onSubmit() {
-    submitted.value = true
+    isLoading.value = true
+
     if (phoneValid.value && businessNameValid.value) {
+        submitted.value = true
+
         window.location.href = appUrl + "register?m=" + phone.value + "&b=" + encodeURIComponent(businessName.value);
     }
 }

@@ -18,10 +18,6 @@
                         </span>
                     </div>
                     <h2 class="text-2xl  text-gray-900 mb-2">تهویه مطبوع</h2>
-                    <p class="text-gray-600 mb-4 text-sm px-4 min-h-[80px]">
-                        با برنامه‌های خدماتی، پیشنهادهای فروش و ... خدمات بیشتری در طول
-                        سال انجام دهید.
-                    </p>
                     <a href="#" class="text-gray-400 font-medium hover:underline">
                         ...
                     </a>
@@ -38,9 +34,6 @@
                         </span>
                     </div>
                     <h2 class="text-2xl  text-gray-900 mb-2">تعمیر لوازم خانگی</h2>
-                    <p class="text-gray-600 mb-4 text-sm px-4 min-h-[80px]">
-                        با مدیریت مکانیابی و رزرو آنلاین، کسب‌وکار تعمیر لوازم خانگی خود را کارآمدتر مدیریت کنید.
-                    </p>
                     <a href="#" class="text-gray-400 font-medium hover:underline">
                         ...
                     </a>
@@ -55,10 +48,6 @@
                         </span>
                     </div>
                     <h2 class="text-2xl  text-gray-900 mb-2">لوله‌کشی</h2>
-                    <p class="text-gray-600 mb-4 text-sm px-4 min-h-[80px]">
-                        با رزرو آنلاین و پیشنهادهای جغرافیایی همه در یک جا مشاغل لوله‌کشی بیشتری بپذیرید و به کارهای
-                        بیشتر فکر کنید
-                    </p>
                     <a href="#" class="text-gray-400 font-medium hover:underline">
                         ...
                     </a>
@@ -73,9 +62,6 @@
                         </span>
                     </div>
                     <h2 class="text-2xl  text-gray-900 mb-2">برقکاران</h2>
-                    <p class="text-gray-600 mb-4 text-sm px-4 min-h-[80px]">
-                        کل کسب‌وکار برقکاری خود را سازماندهی کنید. کارایی را افزایش دهید و ارتباطات را ساده کنید.
-                    </p>
                     <a href="#" class="text-gray-400 font-medium hover:underline">
                         ...
                     </a>
@@ -90,10 +76,6 @@
                         </span>
                     </div>
                     <h2 class="text-2xl  text-gray-900 mb-2">ساختمان</h2>
-                    <p class="text-gray-600 mb-4 text-sm px-4 min-h-[80px]">
-                        با برنامه‌های خدماتی، پیشنهادهای حرفه ای و...، به مشاغل ساختمانی بیشتری وارد شوید و
-                        کسب‌وکار را توسعه دهید.
-                    </p>
                     <a href="#" class="text-gray-400 font-medium hover:underline">
                         ...
                     </a>
@@ -108,9 +90,6 @@
                         </span>
                     </div>
                     <h2 class="text-2xl  text-gray-900 mb-2">آسانسور</h2>
-                    <p class="text-gray-600 mb-4 text-sm px-4 min-h-[80px]">
-                        با رزرو آنلاین، اعزام سریع و برنامه‌ریزی، کسب‌وکار خود را کارآمدتر کنید.
-                    </p>
                     <a href="#" class="text-gray-400 font-medium hover:underline">
                         ...
                     </a>
@@ -126,9 +105,6 @@
                         </span>
                     </div>
                     <h2 class="text-2xl  text-gray-900 mb-2">حیوانات خانگی</h2>
-                    <p class="text-gray-600 mb-4 text-sm px-4 min-h-[80px]">
-                        با تمام ابزارهایی که برای مدیریت و رشد عملیات خود نیاز دارید، کسب‌وکار شماره ۱ باشید.
-                    </p>
                     <a href="#" class="text-gray-400 font-medium hover:underline">
                         ...
                     </a>
@@ -144,10 +120,6 @@
                         </span>
                     </div>
                     <h2 class="text-2xl  text-gray-900 mb-2">صنایع دیگر</h2>
-                    <p class="text-gray-600 mb-4 text-sm px-4 min-h-[80px]">
-                        مهم نیست در چه صنعتی کار می‌کنید، ما تمام ابزارهایی که برای اجرای کسب‌وکارتان مانند یک حرفه‌ای
-                        نیاز دارید، داریم.
-                    </p>
                     <a href="#" class="text-gray-400 font-medium hover:underline">
                         ...
                     </a>
@@ -199,8 +171,8 @@ onMounted(() => {
 
 <style>
 .animated-video-icon {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     cursor: pointer;
 }
 </style>
