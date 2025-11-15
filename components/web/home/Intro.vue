@@ -210,6 +210,7 @@ const phone = ref('')
 const businessName = ref('')
 const submitted = ref(false)
 const isLoading = ref(false)
+const showEmptyError = ref(false)
 
 const phoneValid = computed(() => {
     const re = /^09\d{9}$/
@@ -221,11 +222,18 @@ const businessNameValid = computed(() => {
 })
 
 function onSubmit() {
-    isLoading.value = true
+    submitted.value = true
+
+    // چک کردن اگر فیلدها خالی هستند
+    if (!phone.value.trim() || !businessName.value.trim()) {
+        showEmptyError.value = true
+        return
+    }
+
+    showEmptyError.value = false
 
     if (phoneValid.value && businessNameValid.value) {
-        submitted.value = true
-
+        isLoading.value = true
         window.location.href = appUrl + "register?m=" + phone.value + "&b=" + encodeURIComponent(businessName.value);
     }
 }
