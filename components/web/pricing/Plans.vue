@@ -234,7 +234,7 @@ onMounted(() => {
 })
 
 const getPricing = async () => {
-    const { data } = await $freeApi.get('base/v1/auth/plans')
+    const { data } = await $freeApi.get('base/v1/auth/plans', { params: { system: 6 } })
     plans.value = data
 }
 
